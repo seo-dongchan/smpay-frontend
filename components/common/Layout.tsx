@@ -14,7 +14,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       <ResizableHandle />
 
       <ResizablePanel defaultSize={95}>
-        <div className="h-full w-full overflow-auto bg-gray-50 p-6">
+        <div className="h-full w-full overflow-auto p-6">
           <SidebarProvider className="w-full h-full">
             <AppSidebar />
             <main className="w-full h-full">{children}</main>
