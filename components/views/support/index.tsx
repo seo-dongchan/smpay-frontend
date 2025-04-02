@@ -3,8 +3,41 @@ import { DataTable } from '@/components/data-table';
 import { User, columns } from './constants';
 import { useEffect, useState } from 'react';
 
+import {
+  SortingState,
+  VisibilityState,
+  ColumnFiltersState,
+  getCoreRowModel,
+  getSortedRowModel,
+  getFilteredRowModel,
+  getPaginationRowModel,
+  useReactTable,
+} from '@tanstack/react-table';
+
 const SupportView = () => {
   const [data, setData] = useState<User[]>([]);
+  const [sorting, setSorting] = useState<SortingState>([]);
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
+
+  const table = useReactTable({
+    data,
+    columns,
+    // pageCount: totalPages, // 서버에서 받아온 총 페이지 수
+
+    state: {
+      sorting,
+      columnFilters,
+      columnVisibility,
+    },
+    onSortingChange: setSorting,
+    onColumnFiltersChange: setColumnFilters,
+    onColumnVisibilityChange: setColumnVisibility,
+    getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+  });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -17,7 +50,7 @@ const SupportView = () => {
   return (
     <section className="container">
       <h1 className="mb-6 text-3xl font-bold">All Users</h1>
-      <DataTable columns={columns} data={data} />
+      <DataTable columns={columns} table={table} />
     </section>
   );
 };
