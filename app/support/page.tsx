@@ -1,3 +1,5 @@
+import SupportView from '@/components/views/support';
+
 export default function Support() {
-  return <div>Support</div>;
+  return <SupportView />;
 }
