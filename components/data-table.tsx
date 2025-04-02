@@ -1,18 +1,17 @@
 'use client';
 
-import { useState } from 'react';
-
 import {
   ColumnDef,
   flexRender,
-  SortingState,
-  VisibilityState,
-  ColumnFiltersState,
-  getCoreRowModel,
-  getSortedRowModel,
-  getFilteredRowModel,
-  getPaginationRowModel,
-  useReactTable,
+  // SortingState,
+  // VisibilityState,
+  // ColumnFiltersState,
+  // getCoreRowModel,
+  // getSortedRowModel,
+  // getFilteredRowModel,
+  // getPaginationRowModel,
+  // useReactTable,
+  Table as TableType,
 } from '@tanstack/react-table';
 
 import {
@@ -36,31 +35,11 @@ import { Input } from '@/components/ui/input';
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
-  data: TData[];
+
+  table: TableType<TData>;
 }
 
-export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData, TValue>) {
-  const [sorting, setSorting] = useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
-  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
-
-  const table = useReactTable({
-    data,
-    columns,
-    state: {
-      sorting,
-      columnFilters,
-      columnVisibility,
-    },
-    onSortingChange: setSorting,
-    onColumnFiltersChange: setColumnFilters,
-    onColumnVisibilityChange: setColumnVisibility,
-    getCoreRowModel: getCoreRowModel(),
-    getSortedRowModel: getSortedRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
-  });
-
+export function DataTable<TData, TValue>({ columns, table }: DataTableProps<TData, TValue>) {
   return (
     <>
       {/* Filters */}
@@ -69,7 +48,7 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
         <div className="flex items-center py-4">
           <Input
             placeholder="Search by name..."
-            value={(table.getColumn('name')?.getFilterValue() as string) ?? ''}
+            // value={(table.getColumn('name')?.getFilterValue() as string) ?? ''}
             onChange={(event) => table.getColumn('name')?.setFilterValue(event.target.value)}
             className="max-w-sm"
           />
