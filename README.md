@@ -21,6 +21,7 @@
 - shadcn-ui
 - antd-ui(일부만 : Description)
   - Table은 현재 shadcn 커스텀으로 사용해보고, 작업이 힘들 경우 antd로 사용할 것
+  - Input은 현재 antd로 사용 중이며, 커스텀 마이징 가능하면 추후 작업
 
 ## 기획안 및 피그마
 
@@ -50,27 +51,19 @@ npm run start
 ## 폴더 파일 구조
 
 ```bash
-// TODO : shadcn 관련 된 컴포넌트 관련 폴더 구조를 좀 더 직관적이게 할 방법...
-components/
-│
-├── ui/               // shadcn에서 설치된 순수 UI 단위 컴포넌트
+components
+├── ui                # 순수 shadcn-ui 컴포넌트
 │   ├── button.tsx
-│   ├── sidebar.tsx
+│   ├── input.tsx
 │   └── ...
-│
-├── layout/           // Header, Sidebar 등 페이지 공통 영역
-│   ├── AppSidebar.tsx
+├── layout            # 전체 레이아웃 구성 컴포넌트
 │   ├── Header.tsx
-│   └── ...
-│
-├── nav/              // 네비게이션 관련 컴포넌트
-│   ├── NavMain.tsx
-│   ├── NavUser.tsx
-│   ├── NavProjects.tsx
-│   └── TeamSwitcher.tsx
-│
-├── table/            // 테이블 전용
-│   └── DataTable.tsx
-│
-└── common/           // 재사용 가능한 작은 컴포넌트 모음
+│   └── Layout.tsx
+├── composite         # 조합형 UI (shadcn 기반)
+│   ├── AppSidebar.tsx
+│   ├── TeamSwitcher.tsx
+│   └── NavMain.tsx
+├── common            # 기타 공통 유틸/작은 컴포넌트
+│   └── UserMenu.tsx
+
 ```
