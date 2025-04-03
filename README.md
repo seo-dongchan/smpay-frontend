@@ -2,16 +2,30 @@
 
 ## 기술 스택
 
+### core
+
 - Nextjs 15, React 19 (node v23 이상)
 - Typescript
+
+### state
+
 - React-query [-]
 - Zustand [-]
+
+### styles & ui
+
 - tailwinds
+
+### ui 라이브러리
+
 - shadcn-ui
+- antd-ui(일부만 : Description)
+  - Table은 현재 shadcn 커스텀으로 사용해보고, 작업이 힘들 경우 antd로 사용할 것
 
 ## 기획안 및 피그마
 
-[링크텍스트](https://www.figma.com/design/RxwP19dL9bvFhMJpZ5FzSW/SMPay-Planning?node-id=31-3468&p=f)
+[피그마](https://www.figma.com/design/RxwP19dL9bvFhMJpZ5FzSW/SMPay-Planning?node-id=31-3468&p=f)
+[정책안](https://searchm-atlab.atlassian.net/wiki/spaces/SMPay/pages/13336707/2.)
 
 ## 빌드 및 실행
 
@@ -60,5 +74,3 @@ components/
 │
 └── common/           // 재사용 가능한 작은 컴포넌트 모음
 ```
-
-// TODO : 테이블을 공용으로 사용할 방법을 생각해볼 것.

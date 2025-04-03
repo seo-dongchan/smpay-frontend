@@ -19,6 +19,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from '@/components/ui/pagination';
+import { Button } from '@/components/ui/button';
 
 const invoices = [
   {
@@ -68,6 +69,7 @@ const invoices = [
 const HomeView = () => {
   return (
     <div className="h-full">
+      <Button>Click me</Button>
       <Table>
         <TableHeader>
           <TableRow>
