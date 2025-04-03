@@ -88,3 +88,18 @@ components
 │   └── UserMenu.tsx
 
 ```
+
+## 불필요하거나 사용하지 않은 컴포넌트 혹은 참고용
+
+```bash
+components
+├── ui
+│   ├── dropdown-menu.tsx # 보류
+│   ├── input.tsx # 유효성 검사로 인하여 antd 사용중
+│   ├── table.tsx # 일부는 antd를 사용 중
+│   └── ...
+├── composite
+│   ├── nav-user.tsx
+│   ├── team-switcher.tsx
+│   └── nav-projects.tsx
+```
