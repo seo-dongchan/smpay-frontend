@@ -1,24 +1,12 @@
 'use client';
 
-import * as React from 'react';
-import {
-  AudioWaveform,
-  BookOpen,
-  Bot,
-  Command,
-  Frame,
-  GalleryVerticalEnd,
-  Map,
-  PieChart,
-  Settings2,
-  SquareTerminal,
-  UserRound,
-} from 'lucide-react';
+import { SquareTerminal, UserRound } from 'lucide-react';
 
-import { NavMain } from '@/components/composite/nav-main';
-import { NavProjects } from '@/components/composite/nav-projects';
-import { NavUser } from '@/components/composite/nav-user';
-import { TeamSwitcher } from '@/components/composite/team-switcher';
+// import { NavProjects } from '@/components/composite/nav-projects';
+// import { TeamSwitcher } from '@/components/composite/team-switcher';
+// import { NavUser } from '@/components/composite/nav-user';
+import { NavDashboard } from '@/components/composite/nav-dashboard';
+import { NavHeader } from '@/components/composite/nav-header';
 import {
   Sidebar,
   SidebarContent,
@@ -26,155 +14,50 @@ import {
   SidebarHeader,
   SidebarRail,
 } from '@/components/ui/sidebar';
+import { NavUser } from './nav-user';
 
-// This is sample data.
-const data = {
-  user: {
-    name: 'shadcn',
-    email: 'm@example.com',
-    avatar: '/avatars/shadcn.jpg',
+const navDashboard = [
+  {
+    title: '대행사',
+    url: '#',
+    icon: SquareTerminal,
+    isActive: true,
+    items: [
+      {
+        title: '대행사 등록',
+        url: '/agency',
+      },
+    ],
   },
-  teams: [
-    {
-      name: 'Acme Inc',
-      logo: GalleryVerticalEnd,
-      plan: 'Enterprise',
-    },
-    {
-      name: 'Acme Corp.',
-      logo: AudioWaveform,
-      plan: 'Startup',
-    },
-    {
-      name: 'Evil Corp.',
-      logo: Command,
-      plan: 'Free',
-    },
-  ],
-  navMain: [
-    {
-      title: '대행사',
-      url: '#',
-      icon: SquareTerminal,
-      isActive: true,
-      items: [
-        {
-          title: '대행사 등록',
-          url: '/agency',
-        },
-      ],
-    },
-    {
-      title: '회원',
-      url: '#',
-      icon: UserRound,
-      isActive: true,
-      items: [
-        {
-          title: '회원 등록',
-          url: '/member',
-        },
-      ],
-    },
-    {
-      title: 'Models',
-      url: '#',
-      icon: Bot,
-      items: [
-        {
-          title: 'Genesis',
-          url: '#',
-        },
-        {
-          title: 'Explorer',
-          url: '#',
-        },
-        {
-          title: 'Quantum',
-          url: '#',
-        },
-      ],
-    },
-    {
-      title: 'Documentation',
-      url: '#',
-      icon: BookOpen,
-      items: [
-        {
-          title: 'Introduction',
-          url: '#',
-        },
-        {
-          title: 'Get Started',
-          url: '#',
-        },
-        {
-          title: 'Tutorials',
-          url: '#',
-        },
-        {
-          title: 'Changelog',
-          url: '#',
-        },
-      ],
-    },
-    {
-      title: 'Settings',
-      url: '#',
-      icon: Settings2,
-      items: [
-        {
-          title: 'General',
-          url: '#',
-        },
-        {
-          title: 'Team',
-          url: '#',
-        },
-        {
-          title: 'Billing',
-          url: '#',
-        },
-        {
-          title: 'Limits',
-          url: '#',
-        },
-      ],
-    },
-  ],
-  projects: [
-    {
-      name: 'Design Engineering',
-      url: '#',
-      icon: Frame,
-    },
-    {
-      name: 'Sales & Marketing',
-      url: '#',
-      icon: PieChart,
-    },
-    {
-      name: 'Travel',
-      url: '#',
-      icon: Map,
-    },
-  ],
-};
+  {
+    title: '회원',
+    url: '#',
+    icon: UserRound,
+    isActive: true,
+    items: [
+      {
+        title: '회원 등록',
+        url: '/member',
+      },
+    ],
+  },
+];
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <TeamSwitcher teams={data.teams} />
+        <NavHeader />
       </SidebarHeader>
 
       <SidebarContent>
-        <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
+        <NavDashboard items={navDashboard} />
       </SidebarContent>
+
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser />
       </SidebarFooter>
+
       <SidebarRail />
     </Sidebar>
   );
