@@ -1,10 +1,10 @@
-import ContentTitle from '@/components/common/ContentHeader';
+import ContentHeader from '@/components/common/ContentHeader';
 import InsertSection from './InsertSection';
 
 const AgencyView = () => {
   return (
     <div>
-      <ContentTitle />
+      <ContentHeader />
       <InsertSection />
     </div>
   );
