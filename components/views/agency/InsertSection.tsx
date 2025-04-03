@@ -20,7 +20,12 @@ const InsertSection = () => {
 
   return (
     <section className="my-4">
-      <SectionLabel>대행사 정보</SectionLabel>
+      <SectionLabel
+        className="mb-2 text-lg font-bold text-[#5E5E5E]"
+        labelClassName="text-lg font-bold"
+      >
+        대행사 정보
+      </SectionLabel>
 
       <Form form={form} layout="vertical" onFinish={onFinish} onFinishFailed={onFinishFailed}>
         <Descriptions
