@@ -1,13 +1,12 @@
 import ContentHeader from '@/components/common/ContentHeader';
-import InsertSection from './InsertSection';
-
-const AgencyView = () => {
+import CreateSection from './CreateSection';
+const MemberView = () => {
   return (
     <div>
       <ContentHeader />
-      <InsertSection />
+      <CreateSection />
     </div>
   );
 };
 
-export default AgencyView;
+export default MemberView;

@@ -20,8 +20,29 @@
 
 - shadcn-ui
 - antd-ui(일부만 : Description)
-  - Table은 현재 shadcn 커스텀으로 사용해보고, 작업이 힘들 경우 antd로 사용할 것
-  - Input은 현재 antd로 사용 중이며, 커스텀 마이징 가능하면 추후 작업
+
+### ui 라이브러리 이슈
+
+0. 최대한 shadcn 위주로 작업하는게 목표. tailwinds 방식이 요새 선호하는 추세
+
+1. Table
+
+- Table은 현재 shadcn 커스텀으로 사용 중.
+- 테이블 관련하여 많은 기능이나 커스텀 마이징이 필요하면 antd로 사용
+
+2. Input
+
+- 현재 antd 사용 : 유효성 검사 같은 부분이 큼
+- shadcn으로 쉽게 커스텀마이징이 가능하다면 shadcn으로 사용
+
+3. Description
+
+- shadcn은 이런 형태가 없으므로 antd 로 사용중
+- 만약 디자인이 굳이 필요 없다면, shadcn Card로 대체...
+
+4. Form
+
+- shadcn으로 Form 사용하기로 결정.
 
 ## 기획안 및 피그마
 

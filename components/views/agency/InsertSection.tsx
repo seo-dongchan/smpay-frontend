@@ -8,10 +8,12 @@ import { Label } from '@/components/ui/label';
 const InsertSection = () => {
   const [form] = Form.useForm();
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onFinish = (values: any) => {
     console.log('✅ 제출된 값:', values);
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onFinishFailed = (errorInfo: any) => {
     console.warn('❌ 유효성 검사 실패:', errorInfo);
   };

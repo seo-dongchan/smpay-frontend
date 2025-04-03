@@ -12,6 +12,7 @@ import {
   PieChart,
   Settings2,
   SquareTerminal,
+  UserRound,
 } from 'lucide-react';
 
 import { NavMain } from '@/components/composite/nav-main';
@@ -60,6 +61,18 @@ const data = {
         {
           title: '대행사 등록',
           url: '/agency',
+        },
+      ],
+    },
+    {
+      title: '회원',
+      url: '#',
+      icon: UserRound,
+      isActive: true,
+      items: [
+        {
+          title: '회원 등록',
+          url: '/member',
         },
       ],
     },
