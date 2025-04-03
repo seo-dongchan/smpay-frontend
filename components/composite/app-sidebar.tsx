@@ -14,10 +14,10 @@ import {
   SquareTerminal,
 } from 'lucide-react';
 
-import { NavMain } from '@/components/nav-main';
-import { NavProjects } from '@/components/nav-projects';
-import { NavUser } from '@/components/nav-user';
-import { TeamSwitcher } from '@/components/team-switcher';
+import { NavMain } from '@/components/composite/nav-main';
+import { NavProjects } from '@/components/composite/nav-projects';
+import { NavUser } from '@/components/composite/nav-user';
+import { TeamSwitcher } from '@/components/composite/team-switcher';
 import {
   Sidebar,
   SidebarContent,
@@ -52,22 +52,14 @@ const data = {
   ],
   navMain: [
     {
-      title: 'Playground',
+      title: '대행사',
       url: '#',
       icon: SquareTerminal,
       isActive: true,
       items: [
         {
-          title: 'History',
-          url: '#',
-        },
-        {
-          title: 'Starred',
-          url: '#',
-        },
-        {
-          title: 'Settings',
-          url: '#',
+          title: '대행사 등록',
+          url: '/agency',
         },
       ],
     },
@@ -162,6 +154,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarHeader>
         <TeamSwitcher teams={data.teams} />
       </SidebarHeader>
+
       <SidebarContent>
         <NavMain items={data.navMain} />
         <NavProjects projects={data.projects} />

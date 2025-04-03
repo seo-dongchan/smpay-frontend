@@ -2,7 +2,7 @@ import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/componen
 import { SidebarProvider } from '@/components/ui/sidebar';
 
 import Header from './Header';
-import { AppSidebar } from '../app-sidebar';
+import { AppSidebar } from '../composite/app-sidebar';
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (

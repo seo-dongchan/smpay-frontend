@@ -1,5 +1,5 @@
 'use client';
-import { DataTable } from '@/components/data-table';
+import { DataTable } from '@/components/composite/data-table';
 import { User, columns } from './constants';
 import { useEffect, useState } from 'react';
 

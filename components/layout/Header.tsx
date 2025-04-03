@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { Separator } from '@/components/ui/separator';
-import UserMenu from './UserMenu';
+import UserMenu from '@/components/common/UserMenu';
 
 const Header = () => {
   return (
