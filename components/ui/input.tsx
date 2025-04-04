@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { cn } from '@/lib/utils';
+import { Search } from 'lucide-react';
 
 // 커스텀 마이징을 위해서 임시로 antd 사용중
 function Input({ className, type, ...props }: React.ComponentProps<'input'>) {
@@ -19,4 +20,26 @@ function Input({ className, type, ...props }: React.ComponentProps<'input'>) {
   );
 }
 
-export { Input };
+interface SearchInputProps {
+  value?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  placeholder?: string;
+  className?: string;
+}
+
+const SearchInput = ({ value, onChange, placeholder, className }: SearchInputProps) => {
+  return (
+    <div className={cn('relative w-full bg-white rounded-md', className)}>
+      <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+      <Input
+        type="text"
+        value={value}
+        onChange={onChange}
+        placeholder={placeholder || '검색어를 입력해주세요.'}
+        className="pl-8"
+      />
+    </div>
+  );
+};
+
+export { Input, SearchInput };
