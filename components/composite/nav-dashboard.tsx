@@ -14,8 +14,7 @@ import {
   SidebarMenuSubItem,
   useSidebar,
 } from '@/components/ui/sidebar';
-
-import { DASHBOARD_ITEMS } from './constants';
+import { DASHBOARD_ITEMS } from '@/constants/dasboard';
 
 export function NavDashboard() {
   const { state, toggleSidebar } = useSidebar();
