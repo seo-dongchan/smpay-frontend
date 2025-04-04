@@ -19,7 +19,7 @@ const SearchSection = () => {
 
 export default SearchSection;
 
-const LinkButton = ({ children, className }: { children: React.ReactNode; className?: string }) => {
+const LinkButton = ({ children }: { children: React.ReactNode }) => {
   return (
     <Button
       variant="ghost"
