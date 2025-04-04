@@ -13,6 +13,7 @@ import {
 export interface DashboardSubItem {
   title: string;
   url: string;
+  disabled?: boolean;
 }
 
 export type DashboardItem = {
@@ -20,10 +21,7 @@ export type DashboardItem = {
   url: string;
   icon?: LucideIcon;
   isActive?: boolean;
-  items?: {
-    title: string;
-    url: string;
-  }[];
+  items?: DashboardSubItem[];
 };
 
 export const DASHBOARD_ITEMS = [
@@ -77,6 +75,11 @@ export const DASHBOARD_ITEMS = [
       {
         title: '회원 등록',
         url: '/account/sign-up',
+      },
+      {
+        title: '대행사 등록',
+        url: '/account/agency-register',
+        disabled: true,
       },
     ],
   },
