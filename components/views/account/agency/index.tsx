@@ -1,74 +1,97 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Table, type TableProps } from 'antd';
-import type { FilterValue, SortOrder } from 'antd/es/table/interface';
+import type { SortOrder, FilterValue } from 'antd/es/table/interface';
 
-interface DataType {
-  name: {
-    first: string;
-    last: string;
-  };
-  gender: string;
-  email: string;
-  login: {
-    uuid: string;
-  };
+import { Button } from '@/components/ui/button';
+
+interface AgencyData {
+  id: string;
+  agency: string;
+  owner: string;
+  bussiness_num: number;
+  status: boolean;
+  date: string;
 }
 
 interface TableParams {
   pagination?: {
-    current?: number;
-    pageSize?: number;
+    current: number;
+    pageSize: number;
   };
   sortField?: string;
   sortOrder?: SortOrder;
   filters?: Record<string, FilterValue | null>;
 }
 
-const columns: TableProps<DataType>['columns'] = [
+const columns: TableProps<AgencyData>['columns'] = [
   {
-    title: 'Name',
-    dataIndex: 'name',
-    sorter: true,
-    render: (name) => `${name.first} ${name.last}`,
+    title: 'No',
+    dataIndex: 'id',
+    align: 'center',
   },
   {
-    title: 'Gender',
-    dataIndex: 'gender',
+    title: '대행사명',
+    dataIndex: 'agency',
     sorter: true,
+    align: 'center',
   },
   {
-    title: 'Email',
-    dataIndex: 'email',
+    title: '대표자명',
+    dataIndex: 'owner',
     sorter: true,
+    align: 'center',
+  },
+  {
+    title: '사업자 등록 번호',
+    dataIndex: 'bussiness_num',
+    sorter: true,
+    align: 'center',
+  },
+  {
+    title: '관리',
+    dataIndex: 'action',
+    align: 'center',
+    render: () => <Button>정보 수정</Button>,
+  },
+  {
+    title: '활성여부',
+    dataIndex: 'status',
+    sorter: true,
+    align: 'center',
+    render: (value) => (value ? '활성' : '비활성'),
+  },
+  {
+    title: '가입일',
+    dataIndex: 'date',
+    sorter: true,
+    align: 'center',
   },
 ];
 
-function toURLSearchParams(params: Record<string, unknown>) {
+function toSearchParams(params: Record<string, unknown>) {
   const searchParams = new URLSearchParams();
   for (const [key, value] of Object.entries(params)) {
-    if (
-      value !== undefined &&
-      value !== null &&
-      value !== '' // 빈 문자열도 제외하고 싶다면 추가
-    ) {
+    if (value !== undefined && value !== null && value !== '') {
       searchParams.append(key, String(value));
     }
   }
   return searchParams;
 }
+
 function getApiParams(params: TableParams) {
+  const { pagination, sortField, sortOrder } = params;
   return {
-    results: params.pagination?.pageSize,
-    page: params.pagination?.current,
-    sortField: params.sortField,
-    sortOrder: params.sortOrder,
+    page: pagination?.current,
+    limit: pagination?.pageSize,
+    sortBy: sortField,
+    order: sortOrder === 'ascend' ? 'asc' : sortOrder === 'descend' ? 'desc' : undefined,
   };
 }
 
-const App: React.FC = () => {
-  const [data, setData] = useState<DataType[]>();
+export default function AgencyTable() {
+  const [data, setData] = useState<AgencyData[]>([]);
   const [loading, setLoading] = useState(false);
   const [tableParams, setTableParams] = useState<TableParams>({
     pagination: {
@@ -77,26 +100,35 @@ const App: React.FC = () => {
     },
   });
 
-  const fetchData = () => {
+  const fetchData = async () => {
     setLoading(true);
-    const apiParams = getApiParams(tableParams);
-    const searchParams = toURLSearchParams(apiParams);
 
-    console.log('searchParams', searchParams.toString());
+    try {
+      const apiParams = getApiParams(tableParams);
+      const searchParams = toSearchParams(apiParams);
 
-    fetch(`https://randomuser.me/api?${searchParams.toString()}`)
-      .then((res) => res.json())
-      .then(({ results }) => {
-        setData(results);
-        setLoading(false);
+      const res = await fetch(
+        `https://67ecd18d4387d9117bbb1051.mockapi.io/api/v1/agency?${searchParams.toString()}`,
+      );
+
+      if (res.status === 200) {
+        const result = (await res.json()) as AgencyData[];
+        setData(result);
+        // MockAPI에서는 total count를 헤더에서 제공하지 않음 → 대략 50으로 고정
         setTableParams((prev) => ({
           ...prev,
           pagination: {
-            ...prev.pagination,
-            total: 200,
+            current: prev.pagination?.current ?? 1,
+            pageSize: prev.pagination?.pageSize ?? 10,
+            total: 50,
           },
         }));
-      });
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -108,9 +140,12 @@ const App: React.FC = () => {
     tableParams.sortOrder,
   ]);
 
-  const handleTableChange: TableProps<DataType>['onChange'] = (pagination, filters, sorter) => {
+  const handleTableChange: TableProps<AgencyData>['onChange'] = (pagination, filters, sorter) => {
     setTableParams({
-      pagination,
+      pagination: {
+        current: pagination.current ?? 1,
+        pageSize: pagination.pageSize ?? 10,
+      },
       filters,
       sortField: !Array.isArray(sorter) ? String(sorter.field) : undefined,
       sortOrder: !Array.isArray(sorter) ? sorter.order : undefined,
@@ -122,15 +157,13 @@ const App: React.FC = () => {
   };
 
   return (
-    <Table<DataType>
+    <Table<AgencyData>
       columns={columns}
-      rowKey={(record) => record.login.uuid}
+      rowKey={(record) => record.id}
       dataSource={data}
       pagination={tableParams.pagination}
       loading={loading}
       onChange={handleTableChange}
     />
   );
-};
-
-export default App;
+}
