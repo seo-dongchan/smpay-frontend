@@ -12,11 +12,18 @@ import {
   SidebarMenuSub,
   SidebarMenuSubButton,
   SidebarMenuSubItem,
+  useSidebar,
 } from '@/components/ui/sidebar';
 
 import { DASHBOARD_ITEMS } from './constants';
 
 export function NavDashboard() {
+  const { state, toggleSidebar } = useSidebar();
+
+  const handleClick = () => {
+    if (state === 'collapsed') toggleSidebar();
+  };
+
   return (
     <SidebarGroup>
       <SidebarGroupLabel>Dashboard</SidebarGroupLabel>
@@ -31,7 +38,11 @@ export function NavDashboard() {
             >
               <SidebarMenuItem>
                 <CollapsibleTrigger asChild>
-                  <SidebarMenuButton tooltip={item.title}>
+                  <SidebarMenuButton
+                    tooltip={item.title}
+                    className="cursor-pointer"
+                    onClick={handleClick}
+                  >
                     {item.icon && <item.icon />}
                     <span>{item.title}</span>
                     <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
