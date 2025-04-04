@@ -1,6 +1,6 @@
 import Link from 'next/link';
+import { Fragment } from 'react';
 import { HomeIcon } from 'lucide-react';
-
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -10,7 +10,12 @@ import {
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
 
-export function BreadcrumbWithCustomSeparator() {
+interface BreadcrumbItemType {
+  title: string;
+  url: string;
+}
+
+export function BreadcrumbWithCustomSeparator({ items = [] }: { items: BreadcrumbItemType[] }) {
   return (
     <Breadcrumb>
       <BreadcrumbList>
@@ -18,20 +23,24 @@ export function BreadcrumbWithCustomSeparator() {
           <BreadcrumbLink asChild>
             <Link href="/" className="flex items-center gap-2">
               <HomeIcon className="w-4 h-4" />
-              <span>Home</span>
             </Link>
           </BreadcrumbLink>
         </BreadcrumbItem>
-        <BreadcrumbSeparator />
-        <BreadcrumbItem>
-          <BreadcrumbLink asChild>
-            <Link href="/components">Components</Link>
-          </BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbSeparator />
-        <BreadcrumbItem>
-          <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
-        </BreadcrumbItem>
+
+        {items.map((item, index) => (
+          <Fragment key={item.url}>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              {index === items.length - 1 ? (
+                <BreadcrumbPage>{item.title}</BreadcrumbPage>
+              ) : (
+                <BreadcrumbLink asChild>
+                  <Link href={item.url}>{item.title}</Link>
+                </BreadcrumbLink>
+              )}
+            </BreadcrumbItem>
+          </Fragment>
+        ))}
       </BreadcrumbList>
     </Breadcrumb>
   );
