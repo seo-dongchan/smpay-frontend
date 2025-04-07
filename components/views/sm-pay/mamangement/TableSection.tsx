@@ -4,6 +4,11 @@ import { useState } from 'react';
 import { Table, type TableProps } from 'antd';
 import { Button, LinkTextButton } from '@/components/ui/button';
 
+import StopDialog from './dialog/StopDialog';
+import TerminateDialog from './dialog/TerminateDialog';
+import StopInfoModal from './modal/StopInfoModal';
+import RejectModal from './modal/RejectModal';
+
 const statusList = [
   '광고주 동의 요청',
   '광고주 미동의',
@@ -41,6 +46,12 @@ const mockData: SmPayData[] = Array.from({ length: 20 }).map((_, i) => ({
 
 const SmPayTable = () => {
   const [dataSource] = useState<SmPayData[]>(mockData);
+
+  const [isOpenStopDialog, setIsOpenStopDialog] = useState(false);
+  const [isOpenTerminateDialog, setIsOpenTerminateDialog] = useState(false);
+
+  const [isOpenStopModal, setIsOpenStopModal] = useState(false);
+  const [isOpenRejectModal, setIsOpenRejectModal] = useState(false);
 
   const columns: TableProps<SmPayData>['columns'] = [
     {
@@ -86,7 +97,6 @@ const SmPayTable = () => {
 
         return <span>{value}</span>;
       },
-      // 반려 : 링크, 일시중지 : 링크 클릭
     },
 
     {
@@ -95,9 +105,12 @@ const SmPayTable = () => {
       align: 'center',
       render: () => (
         <div className="flex items-center gap-2">
-          <Button variant="greenOutline">조회</Button>
-          <Button variant="redOutline">일시 중지</Button>
-          <Button variant="redOutline">해지</Button>
+          <Button variant="redOutline" onClick={() => setIsOpenRejectModal(true)}>
+            해지
+          </Button>
+          <Button variant="redOutline" onClick={() => setIsOpenStopModal(true)}>
+            일시 중지
+          </Button>
         </div>
       ),
     },
@@ -111,12 +124,37 @@ const SmPayTable = () => {
   ];
 
   return (
-    <Table<SmPayData>
-      columns={columns}
-      dataSource={dataSource}
-      rowKey={(record) => record.id}
-      pagination={{ pageSize: 10 }}
-    />
+    <section>
+      <StopDialog
+        open={isOpenStopDialog}
+        onClose={() => setIsOpenStopDialog(false)}
+        onConfirm={() => setIsOpenStopDialog(false)}
+      />
+      <TerminateDialog
+        open={isOpenTerminateDialog}
+        onClose={() => setIsOpenTerminateDialog(false)}
+        onConfirm={() => setIsOpenTerminateDialog(false)}
+      />
+
+      <StopInfoModal
+        open={isOpenStopModal}
+        onClose={() => setIsOpenStopModal(false)}
+        onConfirm={() => setIsOpenStopModal(false)}
+      />
+
+      <RejectModal
+        open={isOpenRejectModal}
+        onClose={() => setIsOpenRejectModal(false)}
+        onConfirm={() => setIsOpenRejectModal(false)}
+      />
+
+      <Table<SmPayData>
+        columns={columns}
+        dataSource={dataSource}
+        rowKey={(record) => record.id}
+        pagination={{ pageSize: 10 }}
+      />
+    </section>
   );
 };
 
