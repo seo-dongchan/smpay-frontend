@@ -96,11 +96,11 @@ export const DASHBOARD_ITEMS = [
     items: [
       {
         title: '공지 관리',
-        url: '/member',
+        url: '/',
       },
       {
         title: 'FAQ 관리',
-        url: '/member',
+        url: '/',
       },
     ],
   },

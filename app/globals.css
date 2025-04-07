@@ -125,3 +125,9 @@
 .ant-table-thead > tr > th {
   background-color: transparent !important;
 }
+
+/* antd 테이블의 pagination 중앙 정렬 */
+:where(.ant-table-wrapper) .ant-pagination {
+  display: flex !important;
+  justify-content: center !important;
+}

@@ -12,7 +12,7 @@ const SearchSection = () => {
         <Button>검색</Button>
       </div>
 
-      <LinkButton onClick={() => router.push('/account/agency-register')}>+ SM Pay 신청</LinkButton>
+      <LinkButton onClick={() => router.push('/sm-pay/apply')}>+ SM Pay 신청</LinkButton>
     </SearchToolbar>
   );
 };
