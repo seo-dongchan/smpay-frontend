@@ -3,7 +3,7 @@ import CreateSection from './CreateSection';
 const MemberView = () => {
   return (
     <div>
-      <ContentHeader />
+      <ContentHeader title="" items={[]} />
       <CreateSection />
     </div>
   );

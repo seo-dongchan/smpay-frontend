@@ -4,7 +4,7 @@ import InsertSection from './InsertSection';
 const AgencyView = () => {
   return (
     <div>
-      <ContentHeader />
+      <ContentHeader title="" items={[]} />
       <InsertSection />
     </div>
   );
