@@ -83,10 +83,10 @@ export function NavDashboard() {
           ) : (
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton asChild tooltip={item.title} isActive={item.isActive}>
-                <a href={item.url} className="flex items-center gap-2">
+                <div className="flex items-center gap-2 cursor-pointer" onClick={handleClick}>
                   {item.icon && <item.icon />}
                   <span>{item.title}</span>
-                </a>
+                </div>
               </SidebarMenuButton>
             </SidebarMenuItem>
           ),
