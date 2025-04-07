@@ -200,6 +200,8 @@ const SmPayTable = () => {
         pagination={{
           pageSize: 10,
           itemRender: (page, type, originalElement) => {
+            // TODO : 페이지네이션 관련 커스텀 마이징 필요
+            console.log(originalElement);
             if (type === 'prev') {
               return <button className="custom-arrow">&larr;</button>;
             }
