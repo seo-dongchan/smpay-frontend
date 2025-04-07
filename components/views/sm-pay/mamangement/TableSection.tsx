@@ -8,6 +8,7 @@ import StopDialog from './dialog/StopDialog';
 import TerminateDialog from './dialog/TerminateDialog';
 import StopInfoModal from './modal/StopInfoModal';
 import RejectModal from './modal/RejectModal';
+import { useRouter } from 'next/navigation';
 
 const statusList = [
   '광고주 동의 요청',
@@ -45,6 +46,8 @@ const mockData: SmPayData[] = Array.from({ length: 20 }).map((_, i) => ({
 }));
 
 const SmPayTable = () => {
+  const router = useRouter();
+
   const [dataSource] = useState<SmPayData[]>(mockData);
 
   const [isOpenStopDialog, setIsOpenStopDialog] = useState(false);
@@ -103,13 +106,33 @@ const SmPayTable = () => {
       title: '기능',
       dataIndex: 'action',
       align: 'center',
-      render: () => (
+      render: (_, record) => (
         <div className="flex items-center gap-2">
+          <Button
+            variant="greenOutline"
+            onClick={() => router.push(`/sm-pay/management/${record.id}`)}
+          >
+            조회
+          </Button>
+
+          <Button variant="blueOutline" onClick={() => setIsOpenRejectModal(true)}>
+            재발송
+          </Button>
+          <Button variant="blueOutline" onClick={() => setIsOpenRejectModal(true)}>
+            재개
+          </Button>
+          <Button variant="blueOutline" onClick={() => setIsOpenRejectModal(true)}>
+            심사요청
+          </Button>
+
           <Button variant="redOutline" onClick={() => setIsOpenRejectModal(true)}>
             해지
           </Button>
           <Button variant="redOutline" onClick={() => setIsOpenStopModal(true)}>
             일시 중지
+          </Button>
+          <Button variant="redOutline" onClick={() => setIsOpenStopModal(true)}>
+            신청 취소
           </Button>
         </div>
       ),
