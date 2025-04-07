@@ -9,7 +9,7 @@ const breadcrumbItems: DashboardSubItem[] = [
     url: '/sm-pay',
   },
   {
-    title: 'SM Pay 관리',
+    title: 'SM Pay관리',
     url: '/sm-pay/management',
   },
 ];

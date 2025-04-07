@@ -1,5 +1,6 @@
 'use client';
 
+import { usePathname } from 'next/navigation';
 import { ChevronRight } from 'lucide-react';
 
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
@@ -14,9 +15,12 @@ import {
   SidebarMenuSubItem,
   useSidebar,
 } from '@/components/ui/sidebar';
+import { cn } from '@/lib/utils';
 import { DASHBOARD_ITEMS } from '@/constants/dasboard';
 
 export function NavDashboard() {
+  const pathname = usePathname();
+
   const { state, toggleSidebar } = useSidebar();
 
   const handleClick = () => {
@@ -51,15 +55,27 @@ export function NavDashboard() {
                   <SidebarMenuSub>
                     {item.items
                       .filter((subItem) => !subItem.disabled)
-                      .map((subItem) => (
-                        <SidebarMenuSubItem key={subItem.title}>
-                          <SidebarMenuSubButton asChild>
-                            <a href={subItem.url}>
-                              <span>{subItem.title}</span>
-                            </a>
-                          </SidebarMenuSubButton>
-                        </SidebarMenuSubItem>
-                      ))}
+                      .map((subItem) => {
+                        const isSubActive = pathname === subItem.url;
+                        return (
+                          <SidebarMenuSubItem key={subItem.title}>
+                            <SidebarMenuSubButton
+                              asChild
+                              isActive={isSubActive}
+                              className={cn(
+                                'cursor-pointer h-9 px-4 rounded-md text-sm',
+                                // TODO : 피그마 디자인과 일치해볼지는 고민 좀
+                                isSubActive &&
+                                  'bg-[#C9C0C0] text-black font-medium rounded-[12px] h-[36px]', // active 시
+                              )}
+                            >
+                              <a href={subItem.url}>
+                                <span>{subItem.title}</span>
+                              </a>
+                            </SidebarMenuSubButton>
+                          </SidebarMenuSubItem>
+                        );
+                      })}
                   </SidebarMenuSub>
                 </CollapsibleContent>
               </SidebarMenuItem>
