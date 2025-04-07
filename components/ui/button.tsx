@@ -17,6 +17,8 @@ const buttonVariants = cva(
         secondary: 'bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80',
         ghost: 'hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50',
         link: 'text-primary underline-offset-4 hover:underline',
+        greenOutline: 'text-green-600 border border-green-600 hover:bg-green-50',
+        redOutline: 'text-red-500 border border-red-300 hover:bg-red-50',
       },
       size: {
         default: 'h-9 px-4 py-2 has-[>svg]:px-3',
@@ -65,4 +67,22 @@ const LinkButton = ({ children, onClick }: { children: React.ReactNode; onClick:
   );
 };
 
-export { Button, buttonVariants, LinkButton };
+interface LinkTextButtonProps extends React.ComponentProps<'button'> {
+  children: React.ReactNode;
+}
+
+const LinkTextButton = ({ children, className, ...props }: LinkTextButtonProps) => {
+  return (
+    <button
+      {...props}
+      className={cn(
+        'text-black border-b border-transparent hover:text-blue-500 hover:border-blue-500 transition-all text-sm cursor-pointer',
+        className,
+      )}
+    >
+      {children}
+    </button>
+  );
+};
+
+export { Button, buttonVariants, LinkButton, LinkTextButton };
