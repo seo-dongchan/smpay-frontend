@@ -53,4 +53,16 @@ function Button({
   );
 }
 
-export { Button, buttonVariants };
+const LinkButton = ({ children, onClick }: { children: React.ReactNode; onClick: () => void }) => {
+  return (
+    <Button
+      variant="ghost"
+      className="w-[125px] bg-[#F6BE2C] hover:bg-[#F6BE2C] text-black font-bold"
+      onClick={onClick}
+    >
+      {children}
+    </Button>
+  );
+};
+
+export { Button, buttonVariants, LinkButton };
