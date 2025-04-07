@@ -4,7 +4,7 @@ import SignUpView from '@/components/views/account/sign-up';
 export default function SignUpPage() {
   return (
     <div>
-      <ContentHeader />
+      <ContentHeader title="" items={[]} />
       <SignUpView />
     </div>
   );

@@ -4,7 +4,7 @@ import SMPayChargeCountView from '@/components/views/sm-pay/charge';
 export default function ChargeCountPage() {
   return (
     <div>
-      <ContentHeader />
+      <ContentHeader title="" items={[]} />
       <SMPayChargeCountView />
     </div>
   );

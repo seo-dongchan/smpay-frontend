@@ -1,13 +1,25 @@
 import ContentHeader from '@/components/common/ContentHeader';
 import AgencyRegisterView from '@/components/views/account/agency-register';
+import type { DashboardSubItem } from '@/constants/dasboard';
 
 const AgencyRegisterPage = () => {
   return (
     <div>
-      <ContentHeader />
+      <ContentHeader title="계정관리" items={breadcrumbItems} />
       <AgencyRegisterView />
     </div>
   );
 };
 
 export default AgencyRegisterPage;
+
+const breadcrumbItems: DashboardSubItem[] = [
+  {
+    title: '-',
+    url: '/',
+  },
+  {
+    title: '-',
+    url: '/',
+  },
+];
