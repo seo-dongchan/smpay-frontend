@@ -5,7 +5,7 @@ import { Descriptions } from 'antd';
 import { Badge } from 'antd';
 import { z } from 'zod';
 
-import { SectionLabel } from '@/components/composite/section-label';
+import { BulletLabel } from '@/components/composite/label';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
@@ -33,7 +33,7 @@ const SignUpView = () => {
 
   return (
     <section className="my-4">
-      <SectionLabel>회원 정보</SectionLabel>
+      <BulletLabel>회원 정보</BulletLabel>
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">

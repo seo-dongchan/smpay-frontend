@@ -1,7 +1,7 @@
 import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils'; // Tailwind className 병합 유틸
 
-export function SectionLabel({
+function BulletLabel({
   children,
   className,
   labelClassName,
@@ -11,9 +11,11 @@ export function SectionLabel({
   labelClassName?: string;
 }) {
   return (
-    <div className={cn('flex items-center space-x-1', className)}>
+    <div className={cn('flex items-center space-x-1 py-2', className)}>
       <span>•</span>
       <Label className={labelClassName}>{children}</Label>
     </div>
   );
 }
+
+export { BulletLabel };
