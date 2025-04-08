@@ -1,5 +1,7 @@
 'use client';
 
+// TODO : 테이블을 common에 이동???
+
 import { Table, type TableProps } from 'antd'; // type TablePaginationConfig
 // import type { FilterValue, SortOrder } from 'antd/es/table/interface';
 import React, { useState } from 'react';
