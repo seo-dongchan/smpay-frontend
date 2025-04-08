@@ -4,11 +4,13 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 import { Button, LinkTextButton } from '@/components/ui/button';
-
 import CustomTable from '@/components/composite/table';
 
-import type { TableProps } from 'antd';
 import DialogComponent, { dialogContent, DialogStatus } from './dialog/Dialog';
+import RejectModal from './modal/RejectModal';
+import StopInfoModal from './modal/StopInfoModal';
+
+import type { TableProps } from 'antd';
 
 const statusList = [
   '광고주 동의 요청',
@@ -51,6 +53,8 @@ const SmPayTable = () => {
   const [dataSource] = useState<SmPayData[]>(mockData);
 
   const [openDialog, setOpenDialog] = useState<DialogStatus | null>(null);
+  const [openRejectModal, setOpenRejectModal] = useState<boolean>(false);
+  const [openStopModal, setOpenStopModal] = useState<boolean>(false);
 
   const columns: TableProps<SmPayData>['columns'] = [
     {
@@ -87,11 +91,11 @@ const SmPayTable = () => {
       sorter: (a, b) => Number(b.status) - Number(a.status),
       render: (value) => {
         if (value === '반려') {
-          return <LinkTextButton onClick={() => {}}>{value}</LinkTextButton>;
+          return <LinkTextButton onClick={() => setOpenRejectModal(true)}>{value}</LinkTextButton>;
         }
 
         if (value === '일시중지') {
-          return <LinkTextButton onClick={() => {}}>{value}</LinkTextButton>;
+          return <LinkTextButton onClick={() => setOpenStopModal(true)}>{value}</LinkTextButton>;
         }
 
         return <span>{value}</span>;
@@ -145,12 +149,17 @@ const SmPayTable = () => {
 
   return (
     <section>
-      {!!openDialog && (
+      {openDialog && (
         <DialogComponent
+          open={!!openDialog}
           onClose={() => setOpenDialog(null)}
           content={dialogContent[openDialog].content}
         />
       )}
+
+      <RejectModal open={openRejectModal} onClose={() => setOpenRejectModal(false)} />
+      <StopInfoModal open={openStopModal} onClose={() => setOpenStopModal(false)} />
+
       <CustomTable<SmPayData> columns={columns} dataSource={dataSource} total={dataSource.length} />
     </section>
   );

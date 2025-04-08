@@ -1,7 +1,7 @@
 import { ContentModal, type ModalProps } from '@/components/composite/modal';
 import { Descriptions } from 'antd';
 
-const StopInfoModal = ({ open = true, onClose, onConfirm }: ModalProps) => {
+const StopInfoModal = ({ open = false, onClose, onConfirm }: ModalProps) => {
   return (
     <ContentModal
       open={open}
