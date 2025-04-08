@@ -1,10 +1,12 @@
 import ContentHeader from '@/components/common/ContentHeader';
-import { DashboardSubItem } from '@/constants/dasboard';
+import SmPayApplyView from '@/components/views/sm-pay/apply';
+import type { DashboardSubItem } from '@/constants/dasboard';
 
 export default function Page() {
   return (
     <div>
       <ContentHeader title="SM Pay 신청" items={breadcrumbItems} />
+      <SmPayApplyView />
     </div>
   );
 }

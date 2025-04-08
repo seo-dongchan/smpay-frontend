@@ -12,7 +12,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 
-import { SectionLabel } from '@/components/composite/section-label';
+import { BulletLabel } from '@/components/composite/label';
 
 export function UserMenu() {
   const [open, setOpen] = useState(false);
@@ -28,26 +28,26 @@ export function UserMenu() {
       <DropdownMenuContent align="end" className="min-w-[200px] px-4 ">
         <DropdownMenuGroup>
           <DropdownMenuItem>
-            <SectionLabel>기본 정보 변경</SectionLabel>
+            <BulletLabel>기본 정보 변경</BulletLabel>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <SectionLabel>비밀번호 변경</SectionLabel>
+            <BulletLabel>비밀번호 변경</BulletLabel>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <SectionLabel>로그아웃</SectionLabel>
-          </DropdownMenuItem>
-          <DropdownMenuSeparator />
-
-          <DropdownMenuItem>
-            <SectionLabel>네이버 서비스 설정</SectionLabel>
+            <BulletLabel>로그아웃</BulletLabel>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
 
           <DropdownMenuItem>
-            <SectionLabel>공지사항</SectionLabel>
+            <BulletLabel>네이버 서비스 설정</BulletLabel>
+          </DropdownMenuItem>
+          <DropdownMenuSeparator />
+
+          <DropdownMenuItem>
+            <BulletLabel>공지사항</BulletLabel>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <SectionLabel>고객센터</SectionLabel>
+            <BulletLabel>고객센터</BulletLabel>
           </DropdownMenuItem>
         </DropdownMenuGroup>
       </DropdownMenuContent>
