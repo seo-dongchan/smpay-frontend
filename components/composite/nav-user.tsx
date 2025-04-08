@@ -26,7 +26,8 @@ const user = {
 };
 
 /**
- * 불필요한 메뉴 - 참고용
+ * TODO : 불필요한 컴포넌트 (app-sidebar 버튼 일부 기능)
+ * 불필요한 메뉴(참고용)
  * 다른 곳에서 사용 가능함
  */
 export function NavUser() {

@@ -39,6 +39,11 @@ interface DataTableProps<TData, TValue> {
   table: TableType<TData>;
 }
 
+/**
+ * TODO : 불필요한 컴포넌트 - 테이블
+ * - 테이블 작업이 가능할 경우 작업할 것
+ * - 현재 antd 테이블 사용중
+ */
 export function DataTable<TData, TValue>({ columns, table }: DataTableProps<TData, TValue>) {
   return (
     <>

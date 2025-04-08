@@ -47,7 +47,8 @@ interface InfoPopoverProps {
 }
 
 // Popover custom component
-const PopoverSimple = ({ triggerContent, content }: InfoPopoverProps) => {
+// TODO : 명칭 변경
+const TooltipPopover = ({ triggerContent, content }: InfoPopoverProps) => {
   return (
     <Popover>
       <PopoverTrigger asChild>{triggerContent || <span>Trigger</span>}</PopoverTrigger>
@@ -62,4 +63,4 @@ const PopoverSimple = ({ triggerContent, content }: InfoPopoverProps) => {
   );
 };
 
-export { Popover, PopoverTrigger, PopoverContent, PopoverAnchor, PopoverSimple };
+export { Popover, PopoverTrigger, PopoverContent, PopoverAnchor, TooltipPopover };

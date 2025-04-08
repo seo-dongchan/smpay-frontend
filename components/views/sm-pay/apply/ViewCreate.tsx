@@ -6,9 +6,11 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
-import { PopoverSimple, Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { TooltipPopover, Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+
 import { cn } from '@/lib/utils';
-import { ViewProps } from '.';
+
+import type { ViewProps } from '.';
 
 const ViewCreate = ({ onSubmit, onCancel, display }: ViewProps) => {
   return (
@@ -133,7 +135,7 @@ const ViewCreate = ({ onSubmit, onCancel, display }: ViewProps) => {
       <div>
         <div className="flex items-center gap-2 py-4">
           <BulletLabel>선결제 스케쥴 설정</BulletLabel>
-          <PopoverSimple
+          <TooltipPopover
             triggerContent={popoverData['rule'].triggerContent}
             content={popoverData['rule'].content}
           />
