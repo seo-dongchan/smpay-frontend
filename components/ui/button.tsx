@@ -9,7 +9,7 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: 'bg-primary text-primary-foreground shadow-xs hover:bg-primary/90',
+        default: 'bg-[#545F71] text-white shadow-xs hover:bg-[#434d5d]',
         destructive:
           'bg-destructive text-white shadow-xs hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60',
         outline:
@@ -20,6 +20,7 @@ const buttonVariants = cva(
         greenOutline: 'text-green-600 border border-green-600 hover:bg-green-50',
         redOutline: 'text-red-500 border border-red-300 hover:bg-red-50',
         blueOutline: 'text-blue-600 border border-blue-600 hover:bg-blue-50',
+        cancel: 'bg-[#EEF1F4] text-[#545F71] border border-[#EEF1F4] hover:bg-[#e1e5e8]',
       },
       size: {
         default: 'h-9 px-4 py-2 has-[>svg]:px-3',
