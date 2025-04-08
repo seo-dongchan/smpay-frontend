@@ -77,7 +77,7 @@ const LinkTextButton = ({ children, className, ...props }: LinkTextButtonProps) 
     <button
       {...props}
       className={cn(
-        'text-black border-b border-transparent hover:text-blue-500 hover:border-blue-500 transition-all text-sm cursor-pointer',
+        'border-b text-blue-500 border-blue-500 transition-all text-sm cursor-pointer',
         className,
       )}
     >
