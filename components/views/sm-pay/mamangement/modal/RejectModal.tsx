@@ -1,7 +1,7 @@
 import { ContentModal, type ModalProps } from '@/components/composite/modal';
 import { Descriptions } from 'antd';
 
-const RejectModal = ({ open, onClose, onConfirm }: ModalProps) => {
+const RejectModal = ({ open = false, onClose, onConfirm }: ModalProps) => {
   return (
     <ContentModal
       open={open}
