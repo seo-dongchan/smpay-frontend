@@ -56,7 +56,7 @@ function Button({
     />
   );
 }
-
+// custom link text button
 const LinkButton = ({ children, onClick }: { children: React.ReactNode; onClick: () => void }) => {
   return (
     <Button
@@ -73,6 +73,7 @@ interface LinkTextButtonProps extends React.ComponentProps<'button'> {
   children: React.ReactNode;
 }
 
+// custom link text button
 const LinkTextButton = ({ children, className, ...props }: LinkTextButtonProps) => {
   return (
     <button
