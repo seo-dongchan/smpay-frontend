@@ -1,37 +1,42 @@
 'use client';
 
-import { useState } from 'react';
-import GuidSection from './GuidSection';
-import ListView from './ListView';
+import { useEffect, useState } from 'react';
+import GuidSection, { type ViewType } from './GuidSection';
+import ViewList from './ViewList';
+import ViewCreate from './ViewCreate';
 
 const SmPayApplyView = () => {
-  const [viewType] = useState<ViewType>('test1');
+  const [viewType, setViewType] = useState<ViewType>('list');
+
+  useEffect(() => {
+    const layoutContent = document.getElementById('layout-content');
+    if (layoutContent) {
+      layoutContent.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [viewType]);
 
   return (
     <div>
-      <GuidSection>{GUID_CONTENT[viewType]}</GuidSection>
-      <ListView />
+      <GuidSection viewType={viewType} />
+      <ViewList
+        onSubmit={() => setViewType('create')}
+        onCancel={() => {}}
+        display={viewType === 'list'}
+      />
+
+      <ViewCreate
+        onSubmit={() => {}}
+        onCancel={() => setViewType('list')}
+        display={viewType === 'create'}
+      />
     </div>
   );
 };
 
 export default SmPayApplyView;
 
-type ViewType = 'test1' | 'test2';
-
-const GUID_CONTENT: Record<string, React.ReactNode> = {
-  test1: (
-    <div className="font-normal text-base text-[#363C45]">
-      <p>광고주의 광고 성과를 분석하여 자동 선결제의 기준 ROAS와 충전 금액을 설정할 수 있습니다.</p>
-      <p>
-        SM Pay 신청시 작성하신 기준 ROAS에 도달하면 광고비를 증액하고, 기준 ROAS에서 떨어지면
-        감액하여 효율적인 예산 운영이 가능합니다.
-      </p>
-    </div>
-  ),
-  test2: (
-    <div className="font-normal text-base text-[#363C45]">
-      <p>광고주의 광고 성과를 분석하여 자동 선결제의 기준 ROAS와 충전 금액을 설정할 수 있습니다.</p>
-    </div>
-  ),
+export type ViewProps = {
+  onSubmit: () => void;
+  onCancel: () => void;
+  display: boolean;
 };

@@ -1,12 +1,15 @@
+import { useState } from 'react';
+import { TableProps } from 'antd';
+
 import { BulletLabel } from '@/components/composite/label';
 import { SearchInput } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { SearchBox } from '@/components/common/Box';
 import CustomTable from '@/components/composite/table';
-import { useState } from 'react';
-import { TableProps } from 'antd';
-
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+
+import { cn } from '@/lib/utils';
+import type { ViewProps } from '.';
 
 const statusList = [
   '신청 가능',
@@ -41,7 +44,7 @@ const mockData: AdvertiserData[] = Array.from({ length: 20 }).map((_, i) => ({
   bussiness_num: `사업자 등록 번호 ${i + 1}`,
 }));
 
-const ListView = () => {
+const ViewList = ({ onCancel, onSubmit, display }: ViewProps) => {
   const [dataSource] = useState<AdvertiserData[]>(mockData);
   const [selectedRowKey, setSelectedRowKey] = useState<string | number | null>(null);
 
@@ -95,7 +98,7 @@ const ListView = () => {
   ];
 
   return (
-    <section>
+    <section className={cn(!display && 'hidden')}>
       <div>
         <BulletLabel>광고주 검색</BulletLabel>
         <SearchBox className="gap-2">
@@ -113,9 +116,11 @@ const ListView = () => {
         />
       </div>
 
-      <div className="flex justify-center gap-4">
-        <Button className="w-[150px]">신청</Button>
-        <Button variant="cancel" className="w-[150px]">
+      <div className="flex justify-center gap-4 pb-5">
+        <Button className="w-[150px]" onClick={onSubmit}>
+          신청
+        </Button>
+        <Button variant="cancel" className="w-[150px]" onClick={onCancel}>
           취소
         </Button>
       </div>
@@ -123,4 +128,4 @@ const ListView = () => {
   );
 };
 
-export default ListView;
+export default ViewList;
