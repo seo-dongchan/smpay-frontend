@@ -1,3 +1,6 @@
+'use client';
+
+import { usePathname } from 'next/navigation';
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable';
 import { SidebarProvider } from '@/components/ui/sidebar';
 
@@ -5,6 +8,13 @@ import Header from './Header';
 import { AppSidebar } from '../composite/app-sidebar';
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
+  const pathname = usePathname();
+  const isPaymentPage = pathname === '/payment';
+
+  if (isPaymentPage) {
+    return <div>{children}</div>;
+  }
+
   return (
     <ResizablePanelGroup direction="vertical" className="min-h-[100vh] w-full">
       <ResizablePanel defaultSize={5}>

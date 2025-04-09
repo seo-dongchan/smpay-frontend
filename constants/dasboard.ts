@@ -109,4 +109,9 @@ export const DASHBOARD_ITEMS = [
     url: '/test',
     icon: AlarmClock,
   },
+  {
+    title: '결제 화면',
+    url: '/payment',
+    icon: Smile,
+  },
 ];

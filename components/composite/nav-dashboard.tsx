@@ -1,6 +1,6 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { ChevronRight } from 'lucide-react';
 
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
@@ -20,11 +20,18 @@ import { DASHBOARD_ITEMS } from '@/constants/dasboard';
 
 export function NavDashboard() {
   const pathname = usePathname();
+  const router = useRouter();
 
   const { state, toggleSidebar } = useSidebar();
 
-  const handleClick = () => {
-    if (state === 'collapsed') toggleSidebar();
+  const handleClick = (url: string) => {
+    console.log('state', state);
+    if (state === 'collapsed') {
+      toggleSidebar();
+      return;
+    }
+
+    router.push(url);
   };
 
   return (
@@ -44,7 +51,7 @@ export function NavDashboard() {
                   <SidebarMenuButton
                     tooltip={item.title}
                     className="cursor-pointer"
-                    onClick={handleClick}
+                    onClick={() => handleClick(item.url)}
                   >
                     {item.icon && <item.icon />}
                     <span>{item.title}</span>
@@ -83,7 +90,10 @@ export function NavDashboard() {
           ) : (
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton asChild tooltip={item.title} isActive={item.isActive}>
-                <div className="flex items-center gap-2 cursor-pointer" onClick={handleClick}>
+                <div
+                  className="flex items-center gap-2 cursor-pointer"
+                  onClick={() => handleClick(item.url)}
+                >
                   {item.icon && <item.icon />}
                   <span>{item.title}</span>
                 </div>

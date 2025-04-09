@@ -1,29 +1,24 @@
-// components/ui/typography.tsx
+import React from 'react';
+import type { ReactNode, ElementType } from 'react';
+import { cn } from '@/lib/utils';
 
-// custom Typography
-/**
- * TODO : common에 이동??
- */
-export function TypographyH1({ children }: { children: React.ReactNode }) {
-  return <h1 className="scroll-m-20 text-4xl font-bold tracking-tight lg:text-5xl">{children}</h1>;
+type TypographyVariant = 'h1' | 'h2' | 'h3' | 'h4' | 'p';
+
+interface TypographyProps {
+  variant: TypographyVariant;
+  children: ReactNode;
+  className?: string;
 }
 
-export function TypographyH2({ children }: { children: React.ReactNode }) {
-  return (
-    <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
-      {children}
-    </h2>
-  );
-}
+const variantMap: Record<TypographyVariant, string> = {
+  h1: 'scroll-m-20 text-4xl font-bold tracking-tight lg:text-5xl',
+  h2: 'scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0',
+  h3: 'scroll-m-20 text-2xl font-semibold tracking-tight',
+  h4: 'scroll-m-20 text-xl font-semibold tracking-tight',
+  p: 'leading-7 [&:not(:first-child)]:mt-6',
+};
 
-export function TypographyH3({ children }: { children: React.ReactNode }) {
-  return <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">{children}</h3>;
-}
-
-export function TypographyH4({ children }: { children: React.ReactNode }) {
-  return <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">{children}</h4>;
-}
-
-export function TypographyP({ children }: { children: React.ReactNode }) {
-  return <p className="leading-7 [&:not(:first-child)]:mt-6">{children}</p>;
+export function Typography({ variant, children, className }: TypographyProps) {
+  const Element = variant as ElementType;
+  return <Element className={cn(variantMap[variant], className)}>{children}</Element>;
 }

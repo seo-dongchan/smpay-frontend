@@ -49,6 +49,7 @@ interface InfoPopoverProps {
 /**
  * Custom Dialog Component
  * TODO : 커스텀한 툴팁이 많을 경우 compose로 이동할 예정
+ * TODO : 툴팁을 hover로 사용해서, 불필요한 코드일 수 있음. 혹시 사용할 수 있어 보류
  */
 
 const TooltipPopover = ({ triggerContent, content }: InfoPopoverProps) => {
