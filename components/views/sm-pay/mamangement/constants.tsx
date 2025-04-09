@@ -1,17 +1,3 @@
-import { Dialog, type ModalProps } from '@/components/composite/modal';
-
-interface DialogProps extends ModalProps {
-  content: string | React.ReactNode;
-}
-
-// TODO : confirm 비동기로 동작 가능
-// compose에서 재정리 필요
-const DialogComponent = ({ open = false, onClose, onConfirm, content }: DialogProps) => {
-  return <Dialog open={open} onClose={onClose} onConfirm={onConfirm} title={content} />;
-};
-
-export default DialogComponent;
-
 export type DialogStatus =
   | 'request'
   | 'resend'

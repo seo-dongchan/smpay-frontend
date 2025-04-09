@@ -46,8 +46,11 @@ interface InfoPopoverProps {
   icon?: keyof typeof Icons;
 }
 
-// Popover custom component
-// TODO : 명칭 변경
+/**
+ * Custom Dialog Component
+ * TODO : 커스텀한 툴팁이 많을 경우 compose로 이동할 예정
+ */
+
 const TooltipPopover = ({ triggerContent, content }: InfoPopoverProps) => {
   return (
     <Popover>
