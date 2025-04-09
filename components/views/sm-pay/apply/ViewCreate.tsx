@@ -1,20 +1,56 @@
+import { useState } from 'react';
 import { Descriptions } from 'antd';
 
-import { IconBadge } from '@/components/composite/icon';
-import { BulletLabel } from '@/components/composite/label';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
-import { TooltipPopover, Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { TooltipPopover } from '@/components/ui/popover';
+import { BulletLabel } from '@/components/composite/label';
+import { ConfirmDialog } from '@/components/composite/modal';
 
 import { cn } from '@/lib/utils';
 
+import { dialogContent, popoverData } from './constants';
 import type { ViewProps } from '.';
 
 const ViewCreate = ({ onSubmit, onCancel, display }: ViewProps) => {
+  const [openDialogConfirm, setOpenDialogConfirm] = useState(false);
+  const [openDialogRequest, setOpenDialogRequest] = useState(false);
+
+  const handleSubmit = () => {
+    setOpenDialogConfirm(true);
+  };
+
+  const handleCancel = () => {
+    setOpenDialogRequest(true);
+  };
+
   return (
     <section className={cn(!display && 'hidden')}>
+      {openDialogConfirm && (
+        <ConfirmDialog
+          open={openDialogConfirm}
+          onClose={() => {
+            onSubmit();
+            setOpenDialogConfirm(false);
+          }}
+          onConfirm={() => setOpenDialogConfirm(false)}
+          content={dialogContent['confirm'].content}
+        />
+      )}
+
+      {openDialogRequest && (
+        <ConfirmDialog
+          open={openDialogRequest}
+          onConfirm={() => {
+            onCancel();
+            setOpenDialogRequest(false);
+          }}
+          content={dialogContent['send'].content}
+          cancelDisabled={true}
+        />
+      )}
       <div>
         <div className="flex items-center gap-4 pb-4">
           <BulletLabel labelClassName="text-base">광고주 기본 정보</BulletLabel>
@@ -48,20 +84,11 @@ const ViewCreate = ({ onSubmit, onCancel, display }: ViewProps) => {
       <div>
         <div className="flex items-center gap-2 py-4">
           <BulletLabel>충전 규칙 설정</BulletLabel>
-          <Popover>
-            <PopoverTrigger>
-              <IconBadge name="CircleHelp" bgColor="#F6BE2C" className="cursor-pointer" />
-            </PopoverTrigger>
-            <PopoverContent side="bottom">
-              <div className="flex flex-start gap-2">
-                <IconBadge name="CircleHelp" bgColor="#F6BE2C" className="cursor-pointer mt-1" />
-                <p>
-                  입력된 ROAS를 기준으로, 기준 이상이면 충전 금액을 증액하고 기준 미만이면
-                  감액합니다.
-                </p>
-              </div>
-            </PopoverContent>
-          </Popover>
+
+          <TooltipPopover
+            triggerContent={popoverData['rule'].triggerContent}
+            content={popoverData['rule'].content}
+          />
         </div>
 
         <Descriptions column={1} bordered>
@@ -136,8 +163,8 @@ const ViewCreate = ({ onSubmit, onCancel, display }: ViewProps) => {
         <div className="flex items-center gap-2 py-4">
           <BulletLabel>선결제 스케쥴 설정</BulletLabel>
           <TooltipPopover
-            triggerContent={popoverData['rule'].triggerContent}
-            content={popoverData['rule'].content}
+            triggerContent={popoverData['prepayment'].triggerContent}
+            content={popoverData['prepayment'].content}
           />
         </div>
 
@@ -155,10 +182,10 @@ const ViewCreate = ({ onSubmit, onCancel, display }: ViewProps) => {
       </div>
 
       <div className="flex justify-center gap-4 py-5">
-        <Button className="w-[150px]" onClick={onSubmit}>
+        <Button className="w-[150px]" onClick={handleSubmit}>
           신청
         </Button>
-        <Button variant="cancel" className="w-[150px]" onClick={onCancel}>
+        <Button variant="cancel" className="w-[150px]" onClick={handleCancel}>
           취소
         </Button>
       </div>
@@ -167,32 +194,3 @@ const ViewCreate = ({ onSubmit, onCancel, display }: ViewProps) => {
 };
 
 export default ViewCreate;
-
-type PopoverData = {
-  triggerContent: React.ReactNode;
-  content: React.ReactNode;
-};
-type PopoverDataKey = 'rule' | 'prepayment';
-const popoverData: Record<PopoverDataKey, PopoverData> = {
-  rule: {
-    triggerContent: <IconBadge name="CircleHelp" bgColor="#F6BE2C" className="cursor-pointer" />,
-    content: (
-      <div className="flex flex-start gap-2">
-        <IconBadge name="CircleHelp" bgColor="#F6BE2C" className="cursor-pointer mt-1" />
-        <p>입력된 ROAS를 기준으로, 기준 이상이면 충전 금액을 증액하고, 기준 미만이면 감액합니다</p>
-      </div>
-    ),
-  },
-  prepayment: {
-    triggerContent: <IconBadge name="CircleHelp" bgColor="#F6BE2C" className="cursor-pointer" />,
-    content: (
-      <div className="flex flex-start gap-2">
-        <IconBadge name="CircleHelp" bgColor="#F6BE2C" className="cursor-pointer mt-1" />
-        <p>
-          입력한 최초 충전 금액을 기준으로 충전 금액을 자동으로 증액하거나 감액하며, 일 최대 예산을
-          초과하여 충전하지 않습니다.
-        </p>
-      </div>
-    ),
-  },
-};

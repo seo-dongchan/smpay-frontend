@@ -1,9 +1,9 @@
-import { ContentModal, type ModalProps } from '@/components/composite/modal';
+import { Modal, type ModalProps } from '@/components/composite/modal';
 import { Descriptions } from 'antd';
 
 const StopInfoModal = ({ open = false, onClose, onConfirm }: ModalProps) => {
   return (
-    <ContentModal
+    <Modal
       open={open}
       onClose={onClose}
       onConfirm={onConfirm}
@@ -20,7 +20,7 @@ const StopInfoModal = ({ open = false, onClose, onConfirm }: ModalProps) => {
           </Descriptions>
         </div>
       </div>
-    </ContentModal>
+    </Modal>
   );
 };
 
