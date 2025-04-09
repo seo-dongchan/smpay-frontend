@@ -9,14 +9,23 @@ import {
 } from '@/components/ui/alert-dialog';
 import { X } from 'lucide-react';
 
+/**
+ * Custom Dialog Component
+ * - Modal : 다이얼로그보다 더 큰 범위의 창, 정보 입력이나 다양한 행동을 할 수 있음
+ * - Dialog :사용자와의 짧은 대화/확인용 UI. 보통 confirm/cancel 같이 간단한 피드백이 있음
+ * - Popup :컨텍스트 기반으로 작게 뜨는 UI, 툴팁이나 옵션 메뉴 등
+ */
+
 export interface ModalProps {
   open?: boolean;
   onClose?: () => void;
   onConfirm?: () => void;
   title?: string | React.ReactNode;
+  cancelDisabled?: boolean;
 }
 
-export const Dialog = ({ open = false, onClose, onConfirm, title }: ModalProps) => {
+// 피그마 디자인 기준으로 봤을 땐, content 없이 title만 있는 경우가 많아서 이렇게 구현
+export const Dialog = ({ open = false, onClose, onConfirm, title, cancelDisabled }: ModalProps) => {
   return (
     <AlertDialog open={open}>
       <AlertDialogContent>
@@ -30,12 +39,15 @@ export const Dialog = ({ open = false, onClose, onConfirm, title }: ModalProps) 
           >
             확인
           </AlertDialogAction>
-          <AlertDialogCancel
-            className="min-w-[100px] min-h-[35px] bg-[#EEF1F4] border-[#EEF1F4]"
-            onClick={onClose}
-          >
-            취소
-          </AlertDialogCancel>
+
+          {!cancelDisabled && (
+            <AlertDialogCancel
+              className="min-w-[100px] min-h-[35px] bg-[#EEF1F4] border-[#EEF1F4]"
+              onClick={onClose}
+            >
+              취소
+            </AlertDialogCancel>
+          )}
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
@@ -48,7 +60,7 @@ interface ContentModalProps extends ModalProps {
   confirmText?: string;
   cancelText?: string;
 }
-export const ContentModal = ({
+export const Modal = ({
   open = false,
   children,
   title,
@@ -92,5 +104,31 @@ export const ContentModal = ({
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
+  );
+};
+
+/**
+ * ConfirmDialog
+ * - 모달 다이얼로그 간편화
+ * - 이슈 발생 시 다시 코드 작성 필요
+ */
+export interface ConfirmDialogProps extends ModalProps {
+  content: string | React.ReactNode;
+}
+export const ConfirmDialog = ({
+  open = false,
+  onClose,
+  onConfirm,
+  content,
+  cancelDisabled = false,
+}: ConfirmDialogProps) => {
+  return (
+    <Dialog
+      open={open}
+      onClose={onClose}
+      onConfirm={onConfirm}
+      title={content}
+      cancelDisabled={cancelDisabled}
+    />
   );
 };
