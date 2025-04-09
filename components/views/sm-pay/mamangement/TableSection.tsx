@@ -2,15 +2,15 @@
 
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import type { TableProps } from 'antd';
 
 import { Button, LinkTextButton } from '@/components/ui/button';
 import CustomTable from '@/components/composite/table';
+import { ConfirmDialog } from '@/components/composite/modal';
 
-import DialogComponent, { dialogContent, DialogStatus } from './dialog/Dialog';
 import RejectModal from './modal/RejectModal';
 import StopInfoModal from './modal/StopInfoModal';
-
-import type { TableProps } from 'antd';
+import { dialogContent, type DialogStatus } from './constants';
 
 const statusList = [
   '광고주 동의 요청',
@@ -150,8 +150,8 @@ const SmPayTable = () => {
   return (
     <section>
       {openDialog && (
-        <DialogComponent
-          open={!!openDialog}
+        <ConfirmDialog
+          open
           onClose={() => setOpenDialog(null)}
           content={dialogContent[openDialog].content}
         />
