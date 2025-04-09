@@ -1,12 +1,12 @@
 import { IconBadge } from '@/components/composite/icon';
 
-export type PopoverData = {
+export type HoverData = {
   triggerContent: React.ReactNode;
   content: React.ReactNode;
 };
-export type PopoverDataKey = 'rule' | 'prepayment';
+export type HoverDataKey = 'rule' | 'prepayment';
 
-export const popoverData: Record<PopoverDataKey, PopoverData> = {
+export const hoverData: Record<HoverDataKey, HoverData> = {
   rule: {
     triggerContent: <IconBadge name="CircleHelp" bgColor="#F6BE2C" className="cursor-pointer" />,
     content: (

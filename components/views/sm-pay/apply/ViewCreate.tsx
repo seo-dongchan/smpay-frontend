@@ -5,15 +5,15 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
-import { TooltipPopover } from '@/components/ui/popover';
+
 import { BulletLabel } from '@/components/composite/label';
 import { ConfirmDialog } from '@/components/composite/modal';
 
 import { cn } from '@/lib/utils';
 
-import { dialogContent, popoverData } from './constants';
+import { dialogContent, hoverData } from './constants';
 import type { ViewProps } from '.';
-
+import { TooltipHover } from '@/components/composite/hover-tooltip';
 const ViewCreate = ({ onSubmit, onCancel, display }: ViewProps) => {
   const [openDialogConfirm, setOpenDialogConfirm] = useState(false);
   const [openDialogRequest, setOpenDialogRequest] = useState(false);
@@ -51,7 +51,7 @@ const ViewCreate = ({ onSubmit, onCancel, display }: ViewProps) => {
           cancelDisabled={true}
         />
       )}
-      <div>
+      <div className="mt-4">
         <div className="flex items-center gap-4 pb-4">
           <BulletLabel labelClassName="text-base">광고주 기본 정보</BulletLabel>
           <Button variant="outline">변경하기</Button>
@@ -85,9 +85,9 @@ const ViewCreate = ({ onSubmit, onCancel, display }: ViewProps) => {
         <div className="flex items-center gap-2 py-4">
           <BulletLabel>충전 규칙 설정</BulletLabel>
 
-          <TooltipPopover
-            triggerContent={popoverData['rule'].triggerContent}
-            content={popoverData['rule'].content}
+          <TooltipHover
+            triggerContent={hoverData['rule'].triggerContent}
+            content={hoverData['rule'].content}
           />
         </div>
 
@@ -162,9 +162,9 @@ const ViewCreate = ({ onSubmit, onCancel, display }: ViewProps) => {
       <div>
         <div className="flex items-center gap-2 py-4">
           <BulletLabel>선결제 스케쥴 설정</BulletLabel>
-          <TooltipPopover
-            triggerContent={popoverData['prepayment'].triggerContent}
-            content={popoverData['prepayment'].content}
+          <TooltipHover
+            triggerContent={hoverData['prepayment'].triggerContent}
+            content={hoverData['prepayment'].content}
           />
         </div>
 
