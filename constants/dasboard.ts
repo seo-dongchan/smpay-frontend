@@ -59,7 +59,7 @@ export const DASHBOARD_ITEMS = [
   },
   {
     title: '통합 관리 보고서',
-    url: '/test',
+    url: '/',
     icon: ChartColumnBig,
   },
   {
@@ -85,7 +85,7 @@ export const DASHBOARD_ITEMS = [
   },
   {
     title: 'CS 관리',
-    url: '/test',
+    url: '/',
     icon: Smile,
   },
   {
@@ -106,7 +106,7 @@ export const DASHBOARD_ITEMS = [
   },
   {
     title: '알림 설정',
-    url: '/test',
+    url: '/',
     icon: AlarmClock,
   },
   {
