@@ -12,17 +12,57 @@ import RejectModal from './modal/RejectModal';
 import StopInfoModal from './modal/StopInfoModal';
 import { dialogContent, type DialogStatus } from './constants';
 
-const statusList = [
-  '광고주 동의 요청',
-  '광고주 미동의',
-  '광고주 동의기한 만료',
-  '광고주 동의 완료',
-  '심사 대기',
-  '심사 승인',
-  '반려',
-  '일시중지',
-  '해지 신청 진행',
-  '해지',
+type SmPayStatus =
+  | 'ADVERTISER_AGREEMENT_REQUEST' // 광고주 동의 요청
+  | 'ADVERTISER_DISAGREED' // 광고주 미동의
+  | 'ADVERTISER_AGREEMENT_EXPIRED' // 광고주 동의기한 만료
+  | 'ADVERTISER_AGREEMENT_COMPLETED' // 광고주 동의 완료
+  | 'REVIEW_PENDING' // 심사 대기
+  | 'REVIEW_APPROVED' // 심사 승인
+  | 'REJECTED' // 반려
+  | 'SUSPENDED' // 일시중지
+  | 'TERMINATION_IN_PROGRESS' // 해지 신청 진행
+  | 'TERMINATED'; // 해지
+
+type ActionButton = 'view' | 'cancel' | 'resend' | 'request' | 'stop' | 'terminate' | 'resume';
+
+const statusActions: Record<SmPayStatus, ActionButton[]> = {
+  ADVERTISER_AGREEMENT_REQUEST: ['view'],
+  ADVERTISER_DISAGREED: ['view', 'cancel'],
+  ADVERTISER_AGREEMENT_EXPIRED: ['view', 'cancel', 'resend'],
+  ADVERTISER_AGREEMENT_COMPLETED: ['view', 'cancel', 'request'],
+  REVIEW_PENDING: ['view'],
+  REVIEW_APPROVED: ['view', 'stop', 'terminate'],
+  REJECTED: ['view'],
+  SUSPENDED: ['view', 'terminate', 'resume'],
+  TERMINATION_IN_PROGRESS: [],
+  TERMINATED: [],
+};
+
+const statusLabels: Record<SmPayStatus, string> = {
+  ADVERTISER_AGREEMENT_REQUEST: '광고주 동의 요청',
+  ADVERTISER_DISAGREED: '광고주 미동의',
+  ADVERTISER_AGREEMENT_EXPIRED: '광고주 동의기한 만료',
+  ADVERTISER_AGREEMENT_COMPLETED: '광고주 동의 완료',
+  REVIEW_PENDING: '심사 대기',
+  REVIEW_APPROVED: '심사 승인',
+  REJECTED: '반려',
+  SUSPENDED: '일시중지',
+  TERMINATION_IN_PROGRESS: '해지 신청 진행',
+  TERMINATED: '해지',
+};
+
+const statusList: SmPayStatus[] = [
+  'ADVERTISER_AGREEMENT_REQUEST',
+  'ADVERTISER_DISAGREED',
+  'ADVERTISER_AGREEMENT_EXPIRED',
+  'ADVERTISER_AGREEMENT_COMPLETED',
+  'REVIEW_PENDING',
+  'REVIEW_APPROVED',
+  'REJECTED',
+  'SUSPENDED',
+  'TERMINATION_IN_PROGRESS',
+  'TERMINATED',
 ];
 
 interface SmPayData {
@@ -32,7 +72,7 @@ interface SmPayData {
   accountName: string;
   businessName: string;
   bussiness_num: string;
-  status: string;
+  status: SmPayStatus;
   createdAt: string;
 }
 
@@ -43,7 +83,7 @@ const mockData: SmPayData[] = Array.from({ length: 20 }).map((_, i) => ({
   accountName: `계좌명 ${i + 1}`,
   businessName: `사업자 ${i + 1}`,
   bussiness_num: `110-22-33${i.toString().padStart(2, '0')}`,
-  status: statusList[i % statusList.length], // 10개 순환
+  status: statusList[i % statusList.length],
   createdAt: new Date().toISOString().slice(0, 10),
 }));
 
@@ -89,16 +129,24 @@ const SmPayTable = () => {
       dataIndex: 'status',
       align: 'center',
       sorter: (a, b) => Number(b.status) - Number(a.status),
-      render: (value) => {
-        if (value === '반려') {
-          return <LinkTextButton onClick={() => setOpenRejectModal(true)}>{value}</LinkTextButton>;
+      render: (value: SmPayStatus) => {
+        if (value === 'REJECTED') {
+          return (
+            <LinkTextButton onClick={() => setOpenRejectModal(true)}>
+              {statusLabels[value]}
+            </LinkTextButton>
+          );
         }
 
-        if (value === '일시중지') {
-          return <LinkTextButton onClick={() => setOpenStopModal(true)}>{value}</LinkTextButton>;
+        if (value === 'SUSPENDED') {
+          return (
+            <LinkTextButton onClick={() => setOpenStopModal(true)}>
+              {statusLabels[value]}
+            </LinkTextButton>
+          );
         }
 
-        return <span>{value}</span>;
+        return <span>{statusLabels[value]}</span>;
       },
     },
 
@@ -106,37 +154,58 @@ const SmPayTable = () => {
       title: '기능',
       dataIndex: 'action',
       align: 'center',
-      render: (_, record) => (
-        // TODO : 각 상태 종목에 따른 버튼 노출이 다름
-        <div className="flex items-center gap-2">
-          <Button
-            variant="greenOutline"
-            onClick={() => router.push(`/sm-pay/management/${record.id}`)}
-          >
-            조회
-          </Button>
+      render: (_, record) => {
+        const availableActions = statusActions[record.status];
 
-          <Button variant="blueOutline" onClick={() => setOpenDialog('resend')}>
-            재발송
-          </Button>
-          <Button variant="blueOutline" onClick={() => setOpenDialog('resumption')}>
-            재개
-          </Button>
-          <Button variant="blueOutline" onClick={() => setOpenDialog('request')}>
-            심사 요청
-          </Button>
+        return (
+          <div className="flex items-center gap-2">
+            {availableActions.includes('view') && (
+              <Button
+                variant="greenOutline"
+                onClick={() => router.push(`/sm-pay/management/${record.id}`)}
+              >
+                조회
+              </Button>
+            )}
 
-          <Button variant="redOutline" onClick={() => setOpenDialog('terminate')}>
-            해지
-          </Button>
-          <Button variant="redOutline" onClick={() => setOpenDialog('stop')}>
-            일시 중지
-          </Button>
-          <Button variant="redOutline" onClick={() => setOpenDialog('cancel')}>
-            신청 취소
-          </Button>
-        </div>
-      ),
+            {availableActions.includes('resend') && (
+              <Button variant="blueOutline" onClick={() => setOpenDialog('resend')}>
+                재발송
+              </Button>
+            )}
+
+            {availableActions.includes('resume') && (
+              <Button variant="blueOutline" onClick={() => setOpenDialog('resumption')}>
+                재개
+              </Button>
+            )}
+
+            {availableActions.includes('request') && (
+              <Button variant="blueOutline" onClick={() => setOpenDialog('request')}>
+                심사 요청
+              </Button>
+            )}
+
+            {availableActions.includes('terminate') && (
+              <Button variant="redOutline" onClick={() => setOpenDialog('terminate')}>
+                해지
+              </Button>
+            )}
+
+            {availableActions.includes('stop') && (
+              <Button variant="redOutline" onClick={() => setOpenDialog('stop')}>
+                일시 중지
+              </Button>
+            )}
+
+            {availableActions.includes('cancel') && (
+              <Button variant="redOutline" onClick={() => setOpenDialog('cancel')}>
+                신청 취소
+              </Button>
+            )}
+          </div>
+        );
+      },
     },
 
     {
