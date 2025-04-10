@@ -1,5 +1,5 @@
-import HomeView from '@/components/views/Home';
+import { redirect } from 'next/navigation';
 
 export default function Home() {
-  return <HomeView />;
+  redirect('/sm-pay/management');
 }

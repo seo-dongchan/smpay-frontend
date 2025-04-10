@@ -12,6 +12,9 @@ interface TableSectionProps {
   data: Transaction[];
 }
 
+/**
+ * TODO : antd 테이블로 변환
+ */
 const TableSection = ({ data }: TableSectionProps) => {
   console.log(data);
   return (
