@@ -33,10 +33,7 @@ export const Dialog = ({ open = false, onClose, onConfirm, title, cancelDisabled
           <AlertDialogTitle className="font-normal text-base">{title}</AlertDialogTitle>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogAction
-            className="min-w-[100px] min-h-[35px] bg-[#545F71]"
-            onClick={onConfirm}
-          >
+          <AlertDialogAction className="min-w-[100px] min-h-[35px]" onClick={onConfirm}>
             확인
           </AlertDialogAction>
 
@@ -96,7 +93,7 @@ export const Modal = ({
             {confirmText}
           </AlertDialogAction>
           <AlertDialogCancel
-            className="min-w-[150px] min-h-[35px] bg-[#EEF1F4] border-[#EEF1F4]"
+            className="min-w-[150px] min-h-[35px] bg-[#EEF1F4] border-[#EEF1F4] hover:bg-[#e1e5e8]"
             onClick={onClose}
           >
             {cancelText}

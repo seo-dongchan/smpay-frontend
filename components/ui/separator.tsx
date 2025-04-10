@@ -1,28 +1,35 @@
-"use client"
+import * as React from 'react';
+import * as SeparatorPrimitive from '@radix-ui/react-separator';
+import { cn } from '@/lib/utils';
 
-import * as React from "react"
-import * as SeparatorPrimitive from "@radix-ui/react-separator"
+// 점선 dotted 추가
+interface SeparatorProps extends React.ComponentProps<typeof SeparatorPrimitive.Root> {
+  variant?: 'solid' | 'dotted';
+}
 
-import { cn } from "@/lib/utils"
-
-function Separator({
-  className,
-  orientation = "horizontal",
-  decorative = true,
-  ...props
-}: React.ComponentProps<typeof SeparatorPrimitive.Root>) {
-  return (
+const Separator = React.forwardRef<
+  React.ElementRef<typeof SeparatorPrimitive.Root>,
+  SeparatorProps
+>(
+  (
+    { className, orientation = 'horizontal', decorative = true, variant = 'solid', ...props },
+    ref,
+  ) => (
     <SeparatorPrimitive.Root
-      data-slot="separator-root"
+      ref={ref}
       decorative={decorative}
       orientation={orientation}
       className={cn(
-        "bg-border shrink-0 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px",
-        className
+        'shrink-0 bg-border',
+        orientation === 'horizontal' ? 'h-px w-full' : 'h-full w-px',
+        variant === 'dotted' ? 'border-t border-dotted border-gray-400' : '',
+        className,
       )}
       {...props}
     />
-  )
-}
+  ),
+);
 
-export { Separator }
+Separator.displayName = SeparatorPrimitive.Root.displayName;
+
+export { Separator };
