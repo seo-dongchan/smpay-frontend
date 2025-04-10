@@ -9,6 +9,7 @@ import { TooltipHover } from '@/components/composite/hover-tooltip';
 const InfoSection = () => {
   const [openDialog, setOpenDialog] = useState<DialogStatus | null>(null);
 
+  // TODO 점선 컴포넌트 적용
   return (
     <section className="w-full mt-10 py-6 border-dotted border-gray-400 border-b-2 border-t-2">
       {openDialog && (
