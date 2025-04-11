@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import { SquareCheckBig, SquareX } from 'lucide-react';
+import { format } from 'date-fns';
 
 import Table from '@/components/composite/table';
 import { LinkTextButton } from '@/components/ui/button';
@@ -17,6 +18,7 @@ const columns: ColumnsType<TransactionData> = [
   {
     key: 'agency',
     title: '대행사',
+    align: 'center',
     dataIndex: 'agency',
     onCell: (_, index) => {
       if (index !== undefined && index % 4 === 0) return { rowSpan: 4 };
@@ -27,6 +29,7 @@ const columns: ColumnsType<TransactionData> = [
     key: 'group',
     title: '그룹원',
     dataIndex: 'group',
+    align: 'center',
     onCell: (_, index) => {
       if (index !== undefined && index % 2 === 0) return { rowSpan: 2 };
       return { rowSpan: 0 };
@@ -36,6 +39,7 @@ const columns: ColumnsType<TransactionData> = [
     key: 'advertiser',
     title: '광고주',
     dataIndex: 'advertiser',
+    align: 'center',
     onCell: (_, index) => {
       if (index !== undefined && index % 2 === 0) return { rowSpan: 2 };
       return { rowSpan: 0 };
@@ -46,17 +50,20 @@ const columns: ColumnsType<TransactionData> = [
     title: '거래일자',
     width: 200,
     dataIndex: 'date',
+    align: 'center',
   },
   {
     key: 'txId',
     title: '거래번호',
     dataIndex: 'txId',
+    align: 'center',
     render: (value) => <LinkTextButton>{value}</LinkTextButton>,
   },
   {
     key: 'txType',
     title: '거래유형',
     dataIndex: 'txType',
+    align: 'center',
     render: (value) => (
       <span className={value === '충전' ? 'text-blue-600' : 'text-green-600'}>{value}</span>
     ),
@@ -65,22 +72,26 @@ const columns: ColumnsType<TransactionData> = [
     key: 'bank',
     title: '은행',
     dataIndex: 'bank',
+    align: 'center',
   },
   {
     key: 'account',
     title: '계좌번호',
     width: 150,
     dataIndex: 'account',
+    align: 'center',
   },
   {
     key: 'depositor',
     title: '예금주',
     dataIndex: 'depositor',
+    align: 'center',
   },
   {
     key: 'amount',
     title: '금액',
     dataIndex: 'amount',
+    align: 'center',
     render: (value) => value.toLocaleString(),
   },
   {
@@ -88,6 +99,7 @@ const columns: ColumnsType<TransactionData> = [
     title: '이전대비 변화액',
     dataIndex: 'diffAmount',
     width: 150,
+    align: 'center',
     render: (value) => (
       <span className={value < 0 ? 'text-red-500' : 'text-blue-500'}>
         {value > 0 ? '+' : ''}
@@ -100,6 +112,7 @@ const columns: ColumnsType<TransactionData> = [
     title: '이전대비 변화율',
     width: 150,
     dataIndex: 'diffRate',
+    align: 'center',
     render: (value) => (
       <span className={value < 0 ? 'text-red-500' : 'text-blue-500'}>
         {value > 0 ? '+' : ''}
@@ -112,17 +125,28 @@ const columns: ColumnsType<TransactionData> = [
     title: '상환일자',
     dataIndex: 'repaymentDate',
     width: 200,
+    align: 'center',
+    render: (value) => {
+      if (value) {
+        const date = new Date(value);
+        return <span>{format(date, 'yyyy-MM-dd')}</span>;
+      }
+
+      return <></>;
+    },
   },
   {
     key: 'repaymentStatus',
     title: '상환상태',
     dataIndex: 'repaymentStatus',
     fixed: 'right',
+    align: 'center',
+    width: 85,
     render: (value) =>
       value === 'success' ? (
-        <SquareCheckBig className="text-[#34C759]" />
+        <SquareCheckBig className="text-[#34C759] mx-auto" />
       ) : (
-        <SquareX className="text-red-500" />
+        <SquareX className="text-red-500 mx-auto" />
       ),
   },
 ];
@@ -155,8 +179,8 @@ const TableSection: React.FC = () => {
   }, [width, state]);
 
   return (
-    <div className={cn(tableWidthClass, 'overflow-x-auto')}>
-      <div className="flex flex-wrap gap-4 p-2 py-4 mb-2">
+    <div className={cn(tableWidthClass, 'overflow-x-auto ')}>
+      <div className="flex flex-wrap gap-4 p-2 py-4 mb-2 border-b border-[#656565]">
         {columns
           .filter((col) => col.key !== 'repaymentStatus')
           .map((item) => (
