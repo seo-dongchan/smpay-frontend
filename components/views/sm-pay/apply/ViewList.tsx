@@ -5,7 +5,7 @@ import { BulletLabel } from '@/components/composite/label';
 import { SearchInput } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { SearchBox } from '@/components/common/Box';
-import CustomTable from '@/components/composite/table';
+import Table from '@/components/composite/table';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 
 import { cn } from '@/lib/utils';
@@ -109,7 +109,7 @@ const ViewList = ({ onCancel, onSubmit, display }: ViewProps) => {
 
       <div>
         <BulletLabel>광고주 등로</BulletLabel>
-        <CustomTable<AdvertiserData>
+        <Table<AdvertiserData>
           columns={columns}
           dataSource={dataSource}
           total={dataSource.length}

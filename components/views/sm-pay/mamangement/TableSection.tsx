@@ -2,15 +2,16 @@
 
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import type { TableProps } from 'antd';
 
 import { Button, LinkTextButton } from '@/components/ui/button';
-import CustomTable from '@/components/composite/table';
+import Table from '@/components/composite/table';
 import { ConfirmDialog } from '@/components/composite/modal';
 
 import RejectModal from './modal/RejectModal';
 import StopInfoModal from './modal/StopInfoModal';
 import { dialogContent, type DialogStatus } from './constants';
+
+import type { TableProps } from 'antd';
 
 type SmPayStatus =
   | 'ADVERTISER_AGREEMENT_REQUEST' // 광고주 동의 요청
@@ -229,7 +230,7 @@ const SmPayTable = () => {
       <RejectModal open={openRejectModal} onClose={() => setOpenRejectModal(false)} />
       <StopInfoModal open={openStopModal} onClose={() => setOpenStopModal(false)} />
 
-      <CustomTable<SmPayData> columns={columns} dataSource={dataSource} total={dataSource.length} />
+      <Table<SmPayData> columns={columns} dataSource={dataSource} total={dataSource.length} />
     </section>
   );
 };
