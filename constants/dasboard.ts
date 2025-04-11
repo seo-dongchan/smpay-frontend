@@ -73,6 +73,10 @@ export const DASHBOARD_ITEMS = [
         url: '/account/agency',
       },
       {
+        title: '회원 관리',
+        url: '/account/member-management',
+      },
+      {
         title: '회원 등록',
         url: '/account/sign-up',
       },
