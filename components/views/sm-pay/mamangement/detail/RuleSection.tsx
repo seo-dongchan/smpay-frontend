@@ -10,10 +10,10 @@ import { RadioGroupItem } from '@/components/ui/radio-group';
 import { Input } from '@/components/ui/input';
 import { RadioGroup } from '@/components/ui/radio-group';
 import { Button } from '@/components/ui/button';
-import { Modal } from '@/components/composite/modal';
+
+import HistoryModal from './HistoryModal';
 
 import { hoverData } from '../../apply/constants';
-import HistoryModal from './HistoryModal';
 
 const RuleSection = () => {
   const [isEditing, setIsEditing] = useState(false);
