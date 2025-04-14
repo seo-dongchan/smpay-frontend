@@ -61,7 +61,7 @@ export function NavDashboard() {
                 <CollapsibleContent>
                   <SidebarMenuSub>
                     {item.items
-                      .filter((subItem) => !subItem.disabled)
+                      // .filter((subItem) => !subItem.disabled)
                       .map((subItem) => {
                         const isSubActive = pathname === subItem.url;
                         return (
