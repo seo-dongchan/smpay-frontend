@@ -15,8 +15,8 @@ const commonClassName =
   'relative flex h-12 w-[200px] items-center justify-center text-sm font-medium transition-colors cursor-pointer';
 
 export function TabSwitch({
-  leftLabel = '초대 메일 발송',
-  rightLabel = '직접 등록',
+  leftLabel = '',
+  rightLabel = '',
   value,
   onValueChange,
   className,

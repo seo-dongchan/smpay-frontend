@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { Fragment } from 'react';
 import { HomeIcon } from 'lucide-react';
 import {
   Breadcrumb,
@@ -28,7 +27,7 @@ export function BreadcrumbWithCustomSeparator({ items = [] }: { items: Breadcrum
         </BreadcrumbItem>
 
         {items.map((item, index) => (
-          <Fragment key={item.url}>
+          <div key={`${item.url}-${index}`}>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
               {index === items.length - 1 ? (
@@ -39,7 +38,7 @@ export function BreadcrumbWithCustomSeparator({ items = [] }: { items: Breadcrum
                 </BreadcrumbLink>
               )}
             </BreadcrumbItem>
-          </Fragment>
+          </div>
         ))}
       </BreadcrumbList>
     </Breadcrumb>
