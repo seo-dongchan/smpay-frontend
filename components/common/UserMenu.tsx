@@ -13,9 +13,11 @@ import {
 } from '@/components/ui/dropdown-menu';
 
 import { BulletLabel } from '@/components/composite/label';
+import { useRoleStore } from '@/store/useRoleStore';
 
 export function UserMenu() {
   const [open, setOpen] = useState(false);
+  const { setRole } = useRoleStore();
 
   return (
     <DropdownMenu open={open} onOpenChange={setOpen}>
@@ -29,6 +31,12 @@ export function UserMenu() {
         <DropdownMenuGroup>
           <DropdownMenuItem>
             <BulletLabel>기본 정보 변경</BulletLabel>
+          </DropdownMenuItem>
+          <DropdownMenuItem onClick={() => setRole('admin')}>
+            <BulletLabel>관리자</BulletLabel>
+          </DropdownMenuItem>
+          <DropdownMenuItem onClick={() => setRole('agency')}>
+            <BulletLabel>대행사</BulletLabel>
           </DropdownMenuItem>
           <DropdownMenuItem>
             <BulletLabel>비밀번호 변경</BulletLabel>

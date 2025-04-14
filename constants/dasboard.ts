@@ -24,7 +24,7 @@ export type DashboardItem = {
   items?: DashboardSubItem[];
 };
 
-export const DASHBOARD_ITEMS = [
+export const DASHBOARD_ITEMS_AGENCY = [
   {
     title: 'SM Pay',
     url: '/',
@@ -96,17 +96,51 @@ export const DASHBOARD_ITEMS = [
     isActive: true,
     items: [
       {
-        title: '대행사 관리',
-        url: '/account/agency-management',
-      },
-
-      {
-        title: '회원 관리',
-        url: '/account/member-management',
+        title: '회원 등록',
+        url: '/account/member-register',
       },
       {
         title: '부서 관리',
         url: '/account/department',
+      },
+    ],
+  },
+];
+
+export const DASHBOARD_ITEMS_ADMIN = [
+  {
+    title: 'SM Pay',
+    url: '/',
+    icon: AppWindow,
+    isActive: true,
+    items: [
+      {
+        title: 'SM Pay 관리',
+        url: '/sm-pay/management',
+      },
+      {
+        title: '충전 회수 관리',
+        url: '/sm-pay/charge',
+      },
+      {
+        title: 'SM Pay 심사',
+        url: '/sm-pay/judge',
+      },
+    ],
+  },
+  {
+    title: '계정 관리',
+    url: '/account',
+    icon: Smile,
+    isActive: true,
+    items: [
+      {
+        title: '대행사 관리',
+        url: '/account/agency-management',
+      },
+      {
+        title: '회원 관리',
+        url: '/account/member-management',
       },
     ],
   },
@@ -137,3 +171,8 @@ export const DASHBOARD_ITEMS = [
     icon: AlarmClock,
   },
 ];
+
+export const dashboardItems = {
+  admin: DASHBOARD_ITEMS_ADMIN,
+  agency: DASHBOARD_ITEMS_AGENCY,
+};
