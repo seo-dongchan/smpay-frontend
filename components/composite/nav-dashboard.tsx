@@ -27,7 +27,6 @@ export function NavDashboard() {
   const { state, toggleSidebar } = useSidebar();
 
   const handleClick = (url: string) => {
-    console.log('state', state);
     if (state === 'collapsed') {
       toggleSidebar();
       return;
@@ -56,35 +55,33 @@ export function NavDashboard() {
                     onClick={() => handleClick(item.url)}
                   >
                     {item.icon && <item.icon />}
-                    <span>{item.title}</span>
+                    <span className="font-medium">{item.title}</span>
                     <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
                   </SidebarMenuButton>
                 </CollapsibleTrigger>
                 <CollapsibleContent>
                   <SidebarMenuSub>
-                    {item.items
-                      // .filter((subItem) => !subItem.disabled)
-                      .map((subItem) => {
-                        const isSubActive = pathname === subItem.url;
-                        return (
-                          <SidebarMenuSubItem key={subItem.title}>
-                            <SidebarMenuSubButton
-                              asChild
-                              isActive={isSubActive}
-                              className={cn(
-                                'cursor-pointer h-9 px-4 rounded-md text-sm',
-                                // TODO : 피그마 디자인과 일치해볼지는 고민 좀
-                                isSubActive &&
-                                  'bg-[#C9C0C0] text-black font-medium rounded-[12px] h-[36px]', // active 시
-                              )}
-                            >
-                              <a href={subItem.url}>
-                                <span>{subItem.title}</span>
-                              </a>
-                            </SidebarMenuSubButton>
-                          </SidebarMenuSubItem>
-                        );
-                      })}
+                    {item.items.map((subItem) => {
+                      const isSubActive = pathname === subItem.url;
+                      return (
+                        <SidebarMenuSubItem key={subItem.title}>
+                          <SidebarMenuSubButton
+                            asChild
+                            isActive={isSubActive}
+                            className={cn(
+                              'cursor-pointer h-9 px-4 rounded-md text-sm',
+                              // TODO : 피그마 디자인과 일치해볼지는 고민 좀
+                              isSubActive &&
+                                'bg-[#C9C0C0] text-black font-medium rounded-[12px] h-[36px]', // active 시
+                            )}
+                          >
+                            <a href={subItem.url}>
+                              <span>{subItem.title}</span>
+                            </a>
+                          </SidebarMenuSubButton>
+                        </SidebarMenuSubItem>
+                      );
+                    })}
                   </SidebarMenuSub>
                 </CollapsibleContent>
               </SidebarMenuItem>

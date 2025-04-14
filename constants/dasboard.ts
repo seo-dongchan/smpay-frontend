@@ -6,8 +6,8 @@ import {
   Smile,
   Eraser,
   AlarmClock,
-  type LucideIcon,
   Target,
+  type LucideIcon,
 } from 'lucide-react';
 
 export interface DashboardSubItem {
