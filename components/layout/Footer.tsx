@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 const Footer = () => {
   return (
-    <footer className="w-full h-[120px] bg-gray-100 py-3 border-t border-gray-200 flex flex-col  justify-center gap-4 pl-8">
+    <footer className="w-full h-[120px] bg-gray-100 py-3 border-t border-gray-200 flex flex-col  justify-center gap-2 pl-8">
       <div className="flex  items-center gap-8 text-sm font-medium">
         <Link href="/terms" className="hover:text-gray-900">
           이용약관
