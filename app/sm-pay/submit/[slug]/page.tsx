@@ -14,14 +14,14 @@ export async function generateMetadata({ params }: { params: PageParams }): Prom
   };
 }
 
-export default async function Page({ params }: { params: PageParams }) {
+export default async function SubmitPage({ params }: { params: PageParams }) {
   const { slug } = await params;
 
   console.log('slug', slug);
 
   return (
     <div>
-      <ContentHeader title="신청 내역 상세" items={breadcrumbItems} />
+      <ContentHeader title="신청서 제출" items={breadcrumbItems} />
       <SmPayManagementDetailView />
     </div>
   );
@@ -37,7 +37,7 @@ const breadcrumbItems: DashboardSubItem[] = [
     url: '/sm-pay/management',
   },
   {
-    title: '신청 내역 상세',
+    title: '신청서 제출',
     url: '/sm-pay/management/[slug]',
   },
 ];

@@ -224,6 +224,11 @@ const SmPayTable = () => {
           open
           onClose={() => setOpenDialog(null)}
           content={dialogContent[openDialog].content}
+          onConfirm={() => {
+            if (openDialog === 'request') {
+              router.push('/sm-pay/management/1');
+            }
+          }}
         />
       )}
 

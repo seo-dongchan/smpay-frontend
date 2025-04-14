@@ -18,6 +18,7 @@ const rounded =
 const textStyle = 'flex flex-wrap items-center gap-1 font-normal text-[#363C45]';
 
 // TODO : 피그마 보고 다시 작성할 것
+// TODO : 공용으로 적용할 것.
 const GUID_CONTENT: Record<ViewType, React.ReactNode> = {
   list: (
     <div className="flex items-start gap-2 text-[13px]">
