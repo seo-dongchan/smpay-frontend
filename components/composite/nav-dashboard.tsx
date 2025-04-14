@@ -16,11 +16,13 @@ import {
   useSidebar,
 } from '@/components/ui/sidebar';
 import { cn } from '@/lib/utils';
-import { DASHBOARD_ITEMS } from '@/constants/dasboard';
+import { dashboardItems } from '@/constants/dasboard';
+import { useRoleStore } from '@/store/useRoleStore';
 
 export function NavDashboard() {
   const pathname = usePathname();
   const router = useRouter();
+  const { role } = useRoleStore();
 
   const { state, toggleSidebar } = useSidebar();
 
@@ -38,7 +40,7 @@ export function NavDashboard() {
     <SidebarGroup>
       <SidebarGroupLabel>Dashboard</SidebarGroupLabel>
       <SidebarMenu>
-        {DASHBOARD_ITEMS.map((item) =>
+        {dashboardItems[role].map((item) =>
           item.items && item.items.length > 0 ? (
             <Collapsible
               key={item.title}

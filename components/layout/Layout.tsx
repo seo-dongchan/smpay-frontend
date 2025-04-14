@@ -22,7 +22,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         <AppSidebar />
         <div className="flex flex-col flex-1">
           <Header />
-          <main className="flex-1 overflow-y-auto px-4 py-6">{children}</main>
+          <main className="flex-1 overflow-y-auto px-4">{children}</main>
           <Footer />
         </div>
       </SidebarProvider>
