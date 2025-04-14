@@ -1,7 +1,8 @@
-import { notFound } from 'next/navigation';
+// import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import type { DashboardSubItem } from '@/constants/dasboard';
 import ContentHeader from '@/components/common/ContentHeader';
+import SmPayManagementDetailView from '@/components/views/sm-pay/mamangement/detail';
 
 type PageParams = Promise<{ slug: string }>;
 
@@ -16,20 +17,12 @@ export async function generateMetadata({ params }: { params: PageParams }): Prom
 export default async function Page({ params }: { params: PageParams }) {
   const { slug } = await params;
 
-  const mockData = {
-    id: slug,
-    name: `SM Pay 항목 ${slug}`,
-    status: 'active',
-  };
-
-  if (!mockData) notFound();
+  console.log('slug', slug);
 
   return (
-    <div className="p-4">
-      <ContentHeader title="SM Pay 상세 페이지" items={breadcrumbItems} />
-      <p>Slug: {slug}</p>
-      <p>이름: {mockData.name}</p>
-      <p>상태: {mockData.status}</p>
+    <div>
+      <ContentHeader title="신청 내역 상세" items={breadcrumbItems} />
+      <SmPayManagementDetailView />
     </div>
   );
 }
@@ -42,5 +35,9 @@ const breadcrumbItems: DashboardSubItem[] = [
   {
     title: 'SM Pay관리',
     url: '/sm-pay/management',
+  },
+  {
+    title: '신청 내역 상세',
+    url: '/sm-pay/management/[slug]',
   },
 ];
