@@ -1,11 +1,12 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable';
+
 import { SidebarProvider } from '@/components/ui/sidebar';
+import { AppSidebar } from '@/components/composite/app-sidebar';
 
 import Header from './Header';
-import { AppSidebar } from '../composite/app-sidebar';
+import Footer from './Footer';
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();
@@ -16,22 +17,16 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   }
 
   return (
-    <ResizablePanelGroup direction="vertical" className="min-h-[95vh] w-full">
-      <ResizablePanel defaultSize={5}>
-        <Header />
-      </ResizablePanel>
-
-      <ResizableHandle />
-
-      <ResizablePanel defaultSize={95}>
-        <div className="h-full w-full overflow-auto p-6" id="layout-content">
-          <SidebarProvider className="w-full h-full">
-            <AppSidebar />
-            <main className="w-full h-full">{children}</main>
-          </SidebarProvider>
+    <div className="flex flex-1 flex-col overflow-hidden">
+      <SidebarProvider>
+        <AppSidebar />
+        <div className="flex flex-col flex-1">
+          <Header />
+          <main className="flex-1 overflow-y-auto px-4 py-6">{children}</main>
+          <Footer />
         </div>
-      </ResizablePanel>
-    </ResizablePanelGroup>
+      </SidebarProvider>
+    </div>
   );
 };
 
