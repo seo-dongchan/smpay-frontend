@@ -7,6 +7,7 @@ import {
   AlertDialogFooter,
   AlertDialogCancel,
 } from '@/components/ui/alert-dialog';
+import { cn } from '@/lib/utils';
 import { X } from 'lucide-react';
 
 /**
@@ -56,6 +57,7 @@ interface ContentModalProps extends ModalProps {
   width?: number | string;
   confirmText?: string;
   cancelText?: string;
+  contentClassName?: string;
 }
 export const Modal = ({
   open = false,
@@ -66,6 +68,7 @@ export const Modal = ({
   width = 'fit-content', // ← 기본값
   confirmText = '확인',
   cancelText = '취소',
+  contentClassName,
 }: ContentModalProps) => {
   return (
     <AlertDialog open={open}>
@@ -83,7 +86,7 @@ export const Modal = ({
           </AlertDialogTitle>
         </AlertDialogHeader>
 
-        <div className="px-8 py-4">{children}</div>
+        <div className={cn('px-8 py-4', contentClassName)}>{children}</div>
 
         <AlertDialogFooter className="py-4 bg-[#E2E2E2] rounded-b-lg">
           <AlertDialogAction
