@@ -13,17 +13,14 @@ import { Button } from '@/components/ui/button';
 import { Modal } from '@/components/composite/modal';
 
 import { hoverData } from '../../apply/constants';
+import HistoryModal from './HistoryModal';
 
 const RuleSection = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [isHistory, setIsHistory] = useState(false);
   return (
     <section>
-      {isHistory && (
-        <Modal open={isHistory} onClose={() => setIsHistory(false)}>
-          aaa
-        </Modal>
-      )}
+      {isHistory && <HistoryModal open={isHistory} onClose={() => setIsHistory(false)} />}
       <div className="flex items-center gap-4">
         <div className="flex items-center gap-2 py-4">
           <BulletLabel labelClassName="text-base">충전 규칙 설정</BulletLabel>
