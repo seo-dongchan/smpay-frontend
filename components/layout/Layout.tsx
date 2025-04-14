@@ -16,7 +16,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   }
 
   return (
-    <ResizablePanelGroup direction="vertical" className="min-h-[100vh] w-full">
+    <ResizablePanelGroup direction="vertical" className="min-h-[95vh] w-full">
       <ResizablePanel defaultSize={5}>
         <Header />
       </ResizablePanel>

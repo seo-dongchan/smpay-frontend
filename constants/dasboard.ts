@@ -8,6 +8,7 @@ import {
   Eraser,
   AlarmClock,
   type LucideIcon,
+  Target,
 } from 'lucide-react';
 
 export interface DashboardSubItem {
@@ -42,25 +43,52 @@ export const DASHBOARD_ITEMS = [
     ],
   },
   {
-    title: '네이버 광고 관리',
+    title: '광고 성과 리포트',
     url: '/',
     icon: ChartSpline,
     isActive: true,
     items: [
       {
-        title: '검색 광고 관리',
-        url: '/agency',
+        title: '계정 보고서',
+        url: '/report/account',
       },
       {
-        title: '쇼핑검색 광고 관리',
-        url: '/agency',
+        title: '캠페인 보고서',
+        url: '/report/campaign',
+      },
+      {
+        title: '광고 그룹 보고서',
+        url: '/report/ad-group',
+      },
+      {
+        title: '키워드 보고서',
+        url: '/report/keyword',
+      },
+      {
+        title: '검색어 보고서',
+        url: '/report/search-keyword',
+      },
+      {
+        title: '전환 보고서',
+        url: '/report/conversion',
+      },
+      {
+        title: '매체 보고서',
+        url: '/report/media',
       },
     ],
   },
   {
-    title: '통합 관리 보고서',
-    url: '/',
-    icon: ChartColumnBig,
+    title: '자동 입찰',
+    url: '/auto-bidding',
+    icon: Target,
+    isActive: true,
+    items: [
+      {
+        title: '-',
+        url: '/auto-bidding/setting',
+      },
+    ],
   },
   {
     title: '계정 관리',
@@ -73,17 +101,16 @@ export const DASHBOARD_ITEMS = [
         url: '/account/agency',
       },
       {
-        title: '회원 관리',
-        url: '/account/member-management',
-      },
-      {
         title: '회원 등록',
         url: '/account/sign-up',
       },
       {
-        title: '대행사 등록',
-        url: '/account/agency-register',
-        disabled: true,
+        title: '회원 관리',
+        url: '/account/member-management',
+      },
+      {
+        title: '부서 관리',
+        url: '/account/department',
       },
     ],
   },
@@ -112,10 +139,5 @@ export const DASHBOARD_ITEMS = [
     title: '알림 설정',
     url: '/',
     icon: AlarmClock,
-  },
-  {
-    title: '결제 화면',
-    url: '/payment',
-    icon: Smile,
   },
 ];

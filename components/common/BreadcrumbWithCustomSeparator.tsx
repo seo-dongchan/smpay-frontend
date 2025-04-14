@@ -27,7 +27,7 @@ export function BreadcrumbWithCustomSeparator({ items = [] }: { items: Breadcrum
         </BreadcrumbItem>
 
         {items.map((item, index) => (
-          <div key={`${item.url}-${index}`}>
+          <div key={`${item.url}-${index}`} className="flex items-center gap-2">
             <BreadcrumbSeparator />
             <BreadcrumbItem>
               {index === items.length - 1 ? (
