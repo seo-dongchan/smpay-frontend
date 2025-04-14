@@ -3,7 +3,6 @@
 import {
   AppWindow,
   ChartSpline,
-  ChartColumnBig,
   Smile,
   Eraser,
   AlarmClock,
@@ -98,12 +97,9 @@ export const DASHBOARD_ITEMS = [
     items: [
       {
         title: '대행사 관리',
-        url: '/account/agency',
+        url: '/account/agency-management',
       },
-      {
-        title: '회원 등록',
-        url: '/account/member-management',
-      },
+
       {
         title: '회원 관리',
         url: '/account/member-management',
