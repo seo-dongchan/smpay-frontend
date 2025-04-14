@@ -14,7 +14,7 @@ const SearchSection = () => {
 
       <div className="flex items-center gap-2">
         <LinkButton onClick={() => router.push('/account/agency-register')}>대행사 등록</LinkButton>
-        <LinkButton onClick={() => router.push('/account/sign-up')}>회원 등록</LinkButton>
+        <LinkButton onClick={() => router.push('/account/member-management')}>회원 관리</LinkButton>
       </div>
     </SearchBox>
   );
