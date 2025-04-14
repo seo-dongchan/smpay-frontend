@@ -2,8 +2,8 @@ import * as React from 'react';
 
 import { cn } from '@/lib/utils';
 import { Search } from 'lucide-react';
+import { useState } from 'react';
 
-// 커스텀 마이징을 위해서 임시로 antd 사용중
 function Input({ className, type, ...props }: React.ComponentProps<'input'>) {
   return (
     <input
@@ -20,6 +20,7 @@ function Input({ className, type, ...props }: React.ComponentProps<'input'>) {
   );
 }
 
+// 검색 input
 interface SearchInputProps {
   value?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -42,4 +43,69 @@ const SearchInput = ({ value, onChange, placeholder, className }: SearchInputPro
   );
 };
 
-export { Input, SearchInput };
+// phone input
+interface PhoneInputProps {
+  value?: string; // 전체 전화번호 "01012345678"
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  className?: string;
+}
+
+const PhoneInput = ({ value = '', onChange, className }: PhoneInputProps) => {
+  const [part1, setPart1] = React.useState(value.slice(0, 3));
+  const [part2, setPart2] = React.useState(value.slice(3, 7));
+  const [part3, setPart3] = React.useState(value.slice(7, 11));
+
+  const handleChange =
+    (setter: React.Dispatch<React.SetStateAction<string>>, nextIndex?: number) =>
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const onlyNumber = e.target.value.replace(/\D/g, '');
+      setter(onlyNumber);
+
+      // 최종 value를 합쳐서 외부 onChange로 전달
+      const newValue = [
+        nextIndex === 0 ? onlyNumber : part1,
+        nextIndex === 1 ? onlyNumber : part2,
+        nextIndex === 2 ? onlyNumber : part3,
+      ].join('');
+
+      if (onChange) {
+        onChange({
+          ...e,
+          target: { ...e.target, value: newValue },
+        });
+      }
+    };
+
+  return (
+    <div className={cn('flex items-center gap-2', className)}>
+      <Input
+        maxLength={3}
+        value={part1}
+        onChange={handleChange(setPart1, 0)}
+        className="w-[80px] text-center"
+        placeholder="010"
+        inputMode="numeric"
+      />
+      <span>-</span>
+      <Input
+        maxLength={4}
+        value={part2}
+        onChange={handleChange(setPart2, 1)}
+        className="w-[80px] text-center"
+        placeholder="1234"
+        inputMode="numeric"
+      />
+      <span>-</span>
+      <Input
+        maxLength={4}
+        value={part3}
+        onChange={handleChange(setPart3, 2)}
+        className="w-[80px] text-center"
+        placeholder="5678"
+        inputMode="numeric"
+      />
+    </div>
+  );
+};
+
+export { Input, SearchInput, PhoneInput };
