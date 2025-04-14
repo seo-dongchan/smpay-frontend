@@ -2,11 +2,11 @@
 import { useState } from 'react';
 
 import MailSendSection from './MailSendSection';
-
+import DirectRegistSection from './DirectRegistSection';
 import { BulletLabel } from '@/components/composite/label';
 import { TabSwitch } from '@/components/ui/tab-switch';
 const MemberManagementView = () => {
-  const [value, setValue] = useState(false);
+  const [value, setValue] = useState(true);
 
   return (
     <div>
@@ -19,6 +19,7 @@ const MemberManagementView = () => {
         rightLabel="직접 등록"
       />
       {!value && <MailSendSection />}
+      {value && <DirectRegistSection />}
     </div>
   );
 };
