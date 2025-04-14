@@ -102,7 +102,7 @@ export const DASHBOARD_ITEMS = [
       },
       {
         title: '회원 등록',
-        url: '/account/sign-up',
+        url: '/account/member-management',
       },
       {
         title: '회원 관리',

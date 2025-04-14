@@ -22,6 +22,6 @@ const breadcrumbItems: DashboardSubItem[] = [
   },
   {
     title: '회원 등록',
-    url: '#',
+    url: '/account/member-register',
   },
 ];
