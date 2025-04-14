@@ -12,10 +12,7 @@ const SearchSection = () => {
         <Button>검색</Button>
       </div>
 
-      <div className="flex items-center gap-2">
-        <LinkButton onClick={() => router.push('/account/agency-register')}>대행사 등록</LinkButton>
-        <LinkButton onClick={() => router.push('/account/member-management')}>회원 관리</LinkButton>
-      </div>
+      <LinkButton onClick={() => router.push('/account/member-register')}>회원 등록</LinkButton>
     </SearchBox>
   );
 };

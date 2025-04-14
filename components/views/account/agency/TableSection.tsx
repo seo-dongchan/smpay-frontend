@@ -3,6 +3,13 @@
 import { useEffect, useState } from 'react';
 import { Table, type TableProps } from 'antd';
 import type { SortOrder, FilterValue } from 'antd/es/table/interface';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 
 import { Button } from '@/components/ui/button';
 
@@ -53,14 +60,36 @@ const columns: TableProps<AgencyData>['columns'] = [
     title: '관리',
     dataIndex: 'action',
     align: 'center',
-    render: () => <Button>정보 수정</Button>,
+    render: () => <Button variant="cancel">정보 수정</Button>,
   },
   {
     title: '활성여부',
     dataIndex: 'status',
     sorter: true,
     align: 'center',
-    render: (value) => (value ? '활성' : '비활성'),
+    render: (value: boolean, record) => {
+      const selectedValue = value ? 'active' : 'inactive';
+
+      return (
+        <Select
+          value={selectedValue}
+          onValueChange={(newValue) => {
+            console.log(`id: ${record.id}, 변경된 값: ${newValue}`);
+            // 상태 업데이트 로직을 이곳에 작성 (예: API 호출 등)
+          }}
+        >
+          <SelectTrigger className="w-[100px]">
+            <SelectValue placeholder="선택">
+              {selectedValue === 'active' ? '활성' : '비활성'}
+            </SelectValue>
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="active">활성</SelectItem>
+            <SelectItem value="inactive">비활성</SelectItem>
+          </SelectContent>
+        </Select>
+      );
+    },
   },
   {
     title: '가입일',
@@ -99,6 +128,8 @@ const TableSection = () => {
       pageSize: 10,
     },
   });
+
+  console.log('data', data);
 
   const fetchData = async () => {
     setLoading(true);
