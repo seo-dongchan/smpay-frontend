@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import type { DashboardSubItem } from '@/constants/dasboard';
 import ContentHeader from '@/components/common/ContentHeader';
-import SmPaySubmitView from '@/components/views/sm-pay/submit';
+import SmPaySubmitDetailView from '@/components/views/sm-pay/submit/detail';
 
 type PageParams = Promise<{ slug: string }>;
 
@@ -22,7 +22,7 @@ export default async function SubmitPage({ params }: { params: PageParams }) {
   return (
     <div>
       <ContentHeader title="심사 요청 상세" items={breadcrumbItems} />
-      <SmPaySubmitView />
+      <SmPaySubmitDetailView />
     </div>
   );
 }
