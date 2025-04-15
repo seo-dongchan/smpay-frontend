@@ -1,7 +1,6 @@
 import SMPayManagementView from '@/components/views/sm-pay/mamangement';
 import ContentHeader from '@/components/common/ContentHeader';
-import { DashboardSubItem } from '@/constants/dasboard';
-// TODO : agency 제거
+import type { DashboardSubItem } from '@/constants/dasboard';
 
 const breadcrumbItems: DashboardSubItem[] = [
   {

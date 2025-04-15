@@ -6,13 +6,15 @@ import { TooltipHover } from '@/components/composite/hover-tooltip';
 import { BulletLabel } from '@/components/composite/label';
 import { Button } from '@/components/ui/button';
 
-import { hoverData } from '@/components/common/sm-pay/constants';
 import RuleDesc, { RuleEditDesc } from '@/components/common/sm-pay/RuleDesc';
 import HistoryModal from '@/components/common/sm-pay/HistoryModal';
+
+import { hoverData } from '@/components/common/sm-pay/constants';
 
 const RuleSection = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [isHistory, setIsHistory] = useState(false);
+
   return (
     <section>
       {isHistory && <HistoryModal open={isHistory} onClose={() => setIsHistory(false)} />}

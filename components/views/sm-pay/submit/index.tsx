@@ -1,11 +1,9 @@
 import { Button } from '@/components/ui/button';
-
 import AdvertiserSection from './AdvertiserSection';
 import RuleSection from './RuleSection';
 import ScheduleSection from './ScheduleSection';
 import GuidSection from '@/components/common/sm-pay/GuideSection';
-
-const SmPayManagementDetailView = () => {
+const SmPaySubmitView = () => {
   return (
     <div>
       <GuidSection viewType="list" />
@@ -23,4 +21,4 @@ const SmPayManagementDetailView = () => {
   );
 };
 
-export default SmPayManagementDetailView;
+export default SmPaySubmitView;
