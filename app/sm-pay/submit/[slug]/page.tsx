@@ -1,8 +1,7 @@
-// import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import type { DashboardSubItem } from '@/constants/dasboard';
 import ContentHeader from '@/components/common/ContentHeader';
-import SmPayManagementDetailView from '@/components/views/sm-pay/mamangement/detail';
+import SmPaySubmitView from '@/components/views/sm-pay/submit';
 
 type PageParams = Promise<{ slug: string }>;
 
@@ -14,6 +13,7 @@ export async function generateMetadata({ params }: { params: PageParams }): Prom
   };
 }
 
+// TODO : admin/sm-pay/submit/[slug] 변경
 export default async function SubmitPage({ params }: { params: PageParams }) {
   const { slug } = await params;
 
@@ -21,8 +21,8 @@ export default async function SubmitPage({ params }: { params: PageParams }) {
 
   return (
     <div>
-      <ContentHeader title="신청서 제출" items={breadcrumbItems} />
-      <SmPayManagementDetailView />
+      <ContentHeader title="심사 요청 상세" items={breadcrumbItems} />
+      <SmPaySubmitView />
     </div>
   );
 }
