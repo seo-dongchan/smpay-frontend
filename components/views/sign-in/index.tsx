@@ -3,6 +3,7 @@ import Title from '@/components/common/no-nav/Title';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 
+// TODO : 아이디, 비밀번호 validation 필요
 const SignInView = () => {
   return (
     <div className="w-full max-w-[400px] h-screen flex flex-col gap-5 mx-auto mt-10">
