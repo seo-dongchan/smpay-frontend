@@ -165,9 +165,9 @@ const TableSection: React.FC = () => {
   }));
 
   const tableWidthClass = useMemo(() => {
-    // expanded 1440 -> 1100px
+    // expanded 1440 -> 1160px
     if (state === 'expanded' && width <= 1440) {
-      return 'max-w-[1100px]';
+      return 'max-w-[1160px]';
     }
 
     // collapsed 1440 -> 1330px
@@ -179,7 +179,7 @@ const TableSection: React.FC = () => {
   }, [width, state]);
 
   return (
-    <div className={cn(tableWidthClass, 'overflow-x-auto ')}>
+    <section>
       <div className="flex flex-wrap gap-4 p-2 py-4 mb-2 border-b border-[#656565]">
         {columns
           .filter((col) => col.key !== 'repaymentStatus')
@@ -200,13 +200,15 @@ const TableSection: React.FC = () => {
           ))}
       </div>
 
-      <Table<TransactionData>
-        columns={newColumns}
-        dataSource={MOCK_DATA}
-        total={MOCK_DATA.length}
-        scroll={{ x: 2000 }}
-      />
-    </div>
+      <div className={cn(tableWidthClass, 'overflow-x-auto ')}>
+        <Table<TransactionData>
+          columns={newColumns}
+          dataSource={MOCK_DATA}
+          total={MOCK_DATA.length}
+          scroll={{ x: 2000 }}
+        />
+      </div>
+    </section>
   );
 };
 
