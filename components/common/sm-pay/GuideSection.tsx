@@ -17,13 +17,11 @@ const rounded =
   'border border-[#CDCDCD] rounded-[15px] px-2 bg-[#FFFFFF] h-[25px] flex items-center';
 const textStyle = 'flex flex-wrap items-center gap-1 font-normal text-[#363C45]';
 
-// TODO : 피그마 보고 다시 작성할 것
-// TODO : 공용으로 적용할 것.
 const GUID_CONTENT: Record<ViewType, React.ReactNode> = {
   list: (
     <div className="flex items-start gap-2 text-[13px]">
       <IconBadge name="CircleAlert" bgColor="#1062FF" />
-      <div className="font-normal text-base text-[#363C45]">
+      <div className="font-normal text-[#363C45]">
         <p>
           광고주의 광고 성과를 분석하여 자동 선결제의 기준 ROAS와 충전 금액을 설정할 수 있습니다.
         </p>
@@ -36,7 +34,7 @@ const GUID_CONTENT: Record<ViewType, React.ReactNode> = {
   ),
   create: (
     <div className="flex items-start gap-2 text-[13px]">
-      <IconBadge name="CircleAlert" bgColor="#1062FF" />
+      <IconBadge className="mt-1" name="CircleAlert" bgColor="#1062FF" />
       <div className="flex flex-col gap-1">
         <div className={textStyle}>
           <p>SM Pay는</p>
