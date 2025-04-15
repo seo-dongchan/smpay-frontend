@@ -5,6 +5,8 @@ import RuleSection from './RuleSection';
 import ScheduleSection from './ScheduleSection';
 import GuidSection from '@/components/common/sm-pay/GuideSection';
 
+// [대행사] SM Pay 관리 -> 조회 -> 신청 내역 상세
+// TODO : agency/sm-pay/management/[slug]  변경
 const SmPayManagementDetailView = () => {
   return (
     <div>
