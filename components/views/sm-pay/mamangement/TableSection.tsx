@@ -88,7 +88,7 @@ const mockData: SmPayData[] = Array.from({ length: 20 }).map((_, i) => ({
   createdAt: new Date().toISOString().slice(0, 10),
 }));
 
-const SmPayTable = () => {
+const TableSection = () => {
   const router = useRouter();
 
   const [dataSource] = useState<SmPayData[]>(mockData);
@@ -240,4 +240,4 @@ const SmPayTable = () => {
   );
 };
 
-export default SmPayTable;
+export default TableSection;
