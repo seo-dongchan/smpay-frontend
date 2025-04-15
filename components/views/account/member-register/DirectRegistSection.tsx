@@ -23,11 +23,12 @@ const DirectRegistSection = () => {
       <BulletLabel className="mb-4" labelClassName="text-base">
         회원 정보
       </BulletLabel>
-      <Descriptions column={1} bordered>
-        <Descriptions.Item
-          labelStyle={{ width: 200 }} // 원하는 너비로 조절
-          label={<span className={descLabelClassName}>부서 선택 *</span>}
-        >
+      <Descriptions
+        labelStyle={{ width: 200 }} // 원하는 너비로 조절
+        column={1}
+        bordered
+      >
+        <Descriptions.Item label={<span className={descLabelClassName}>부서 선택 *</span>}>
           <Select>
             <SelectTrigger className="w-[500px]">
               <SelectValue placeholder="구분 : 일별조회" />
@@ -65,11 +66,12 @@ const DirectRegistSection = () => {
         </p>
       </div>
 
-      <Descriptions column={1} bordered>
-        <Descriptions.Item
-          labelStyle={{ width: 200 }} // 원하는 너비로 조절
-          label={<span className={descLabelClassName}>비밀번호 *</span>}
-        >
+      <Descriptions
+        column={1}
+        bordered
+        labelStyle={{ width: 200 }} // 원하는 너비로 조절
+      >
+        <Descriptions.Item label={<span className={descLabelClassName}>비밀번호 *</span>}>
           <Input className="max-w-[500px]" />
         </Descriptions.Item>
         <Descriptions.Item label={<span className={descLabelClassName}>비밀번호 *</span>}>
