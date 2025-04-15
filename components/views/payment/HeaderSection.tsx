@@ -1,15 +1,9 @@
-import { Typography } from '@/components/ui/typography';
+import Title from '@/components/common/no-nav/Title';
 
 const HeaderSection = () => {
   return (
     <section>
-      <Typography
-        variant="h3"
-        className="inline-block mx-auto pb-3 border-dotted border-gray-400 border-b-2"
-      >
-        SM Pay - 온라인 광고 결제 솔루션
-      </Typography>
-
+      <Title />
       <div className="mt-10 text-center space-y-1 leading-relaxed">
         <p>
           다음은 SM Pay에서 선결제 서비스를 제공하기 위해 회원님의 정보를 활용하는 것에 대한
