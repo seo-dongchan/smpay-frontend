@@ -1,12 +1,17 @@
 'use client';
 
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { Descriptions } from 'antd';
+
 import Title from '@/components/common/no-nav/Title';
 import { BulletLabel } from '@/components/composite/label';
-import { PhoneInput } from '@/components/ui/input';
-import { Descriptions } from 'antd';
-import { useState } from 'react';
+import { Input, PhoneInput } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
 
+// TODO : MembershipView 이 아니고 비밀번호 변경 관련 명칭으로 변경 필요
 const MembershipView = () => {
+  const router = useRouter();
   const [phone, setPhone] = useState('');
 
   return (
@@ -18,53 +23,34 @@ const MembershipView = () => {
       </div>
       <div className="space-y-1">
         <BulletLabel labelClassName="text-base">회원 정보</BulletLabel>
-        <Descriptions
-          bordered
-          column={1}
-          size="middle"
-          labelStyle={{
-            width: '200px',
-            background: '#f9fafb',
-            fontWeight: 'normal',
-          }}
-          contentStyle={{
-            background: 'white',
-          }}
-        >
+        <Descriptions bordered column={1} size="middle" styles={{ label: { width: 200 } }}>
           <Descriptions.Item label="대행사명">주식회사 씨차례</Descriptions.Item>
-
           <Descriptions.Item label="회원 구분">그룹장</Descriptions.Item>
-
           <Descriptions.Item label="성명">홍길동</Descriptions.Item>
-
           <Descriptions.Item label="부서명">마케팅 기획실</Descriptions.Item>
-
           <Descriptions.Item label="이메일 주소">name@company.com</Descriptions.Item>
         </Descriptions>
         <p className="text-gray-500 text-sm h-[60px] bg-[#f9fafb] flex items-center rounded mt-2 px-4">
           * 가입 시 입력한 이메일 주소의 아이디 부분이 사이트에서 ID로 사용됩니다.
         </p>
-        <Descriptions
-          bordered
-          column={1}
-          size="middle"
-          labelStyle={{
-            width: '200px',
-            background: '#f9fafb',
-            fontWeight: 'normal',
-          }}
-          contentStyle={{
-            background: 'white',
-          }}
-        >
-          <Descriptions.Item label="비밀번호 *">주식회사 씨차례</Descriptions.Item>
-
-          <Descriptions.Item label="비밀번호 확인 *">그룹장</Descriptions.Item>
-
+        <Descriptions bordered column={1} size="middle" styles={{ label: { width: 200 } }}>
+          <Descriptions.Item label="비밀번호 *">
+            <Input className="max-w-[500px]" />
+          </Descriptions.Item>
+          <Descriptions.Item label="비밀번호 확인 *">
+            <Input className="max-w-[500px]" />
+          </Descriptions.Item>
           <Descriptions.Item label="연락처">
             <PhoneInput value={phone} onChange={(e) => setPhone(e.target.value)} />
           </Descriptions.Item>
-        </Descriptions>{' '}
+        </Descriptions>
+      </div>
+
+      <div className="flex justify-center gap-2 mt-4">
+        <Button className="w-[150px]">확인</Button>
+        <Button variant="outline" className="w-[150px]" onClick={() => router.back()}>
+          취소
+        </Button>
       </div>
     </div>
   );

@@ -1,10 +1,16 @@
+'use client';
+
+import { useRouter } from 'next/navigation';
 import { Input } from '@/components/ui/input';
-import Title from '@/components/common/no-nav/Title';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 
+import Title from '@/components/common/no-nav/Title';
+
 // TODO : 아이디, 비밀번호 validation 필요
 const SignInView = () => {
+  const router = useRouter();
+
   return (
     <div className="w-full max-w-[400px] h-screen flex flex-col gap-5 mx-auto mt-10">
       <Title />
@@ -19,7 +25,9 @@ const SignInView = () => {
         <Input />
       </div>
 
-      <Button>로그인</Button>
+      <Button className="text-base font-bold" onClick={() => router.push('/sm-pay/management')}>
+        로그인
+      </Button>
 
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
@@ -34,7 +42,7 @@ const SignInView = () => {
 
       <div className="flex flex-col gap-2  justify-center">
         <span className="text-[#545F71] font-bold">아직 SM Pay 회원이 아니신가요?</span>
-        <Button className="w-full">
+        <Button className="w-full mt-4">
           <span className="text-base font-bold">대행사 등록 신청</span>
         </Button>
       </div>

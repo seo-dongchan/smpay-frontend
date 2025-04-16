@@ -1,4 +1,3 @@
-import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils'; // Tailwind className 병합 유틸
 
 function BulletLabel({
@@ -13,7 +12,7 @@ function BulletLabel({
   return (
     <div className={cn('flex items-center space-x-1 py-2', className)}>
       <span>•</span>
-      <Label className={labelClassName}>{children}</Label>
+      <span className={labelClassName}>{children}</span>
     </div>
   );
 }
