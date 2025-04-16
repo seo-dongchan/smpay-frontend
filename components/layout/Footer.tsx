@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Copyright from './Copyright';
 
 const Footer = () => {
   return (
@@ -21,9 +22,7 @@ const Footer = () => {
         <div>주소: 서울 강남구 논현로 319, 3층,4층</div>
       </div>
 
-      <div className="flex items-center gap-8 text-sm font-medium text-[#545F71]">
-        Copyright ⓒ SM Pay. All rights reserved.
-      </div>
+      <Copyright className="flex items-center gap-8 text-sm font-medium text-[#545F71]" />
     </footer>
   );
 };

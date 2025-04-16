@@ -1,7 +1,9 @@
+import { useState } from 'react';
+import Copyright from '@/components/layout/Copyright';
+import { ConfirmDialog } from '@/components/composite/modal';
 import { Button } from '@/components/ui/button';
 import { dialogContent, DialogStatus } from './constants';
-import { useState } from 'react';
-import { ConfirmDialog } from '@/components/composite/modal';
+
 const FooterSection = () => {
   const [openDialog, setOpenDialog] = useState<DialogStatus | null>(null);
 
@@ -23,7 +25,7 @@ const FooterSection = () => {
           취소
         </Button>
       </div>
-      <p className="py-[50px]">Copyright ⓒ SM Pay. All rights reserved.</p>
+      <Copyright className="py-[50px]" />
     </section>
   );
 };
