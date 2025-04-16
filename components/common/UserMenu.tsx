@@ -40,7 +40,7 @@ export function UserMenu() {
             <BulletLabel>대행사</BulletLabel>
           </DropdownMenuItem>
           <DropdownMenuItem className="cursor-pointer">
-            <Link href="/membership">
+            <Link href="/membership/member-info">
               <BulletLabel>비밀번호 변경</BulletLabel>
             </Link>
           </DropdownMenuItem>
@@ -50,7 +50,9 @@ export function UserMenu() {
           <DropdownMenuSeparator />
 
           <DropdownMenuItem className="cursor-pointer">
-            <BulletLabel>네이버 서비스 설정</BulletLabel>
+            <Link href="/membership/naver-service">
+              <BulletLabel>네이버 서비스 설정</BulletLabel>
+            </Link>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
 

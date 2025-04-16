@@ -11,7 +11,7 @@ import Footer from './Footer';
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();
   const isNoNavPage =
-    pathname === '/payment' || pathname === '/sign-in' || pathname === '/membership';
+    pathname === '/payment' || pathname === '/sign-in' || pathname === '/membership/member-info';
 
   if (isNoNavPage) {
     return <div>{children}</div>;
