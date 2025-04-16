@@ -9,8 +9,7 @@ import { BulletLabel } from '@/components/composite/label';
 import { Input, PhoneInput } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 
-// TODO : MembershipView 이 아니고 비밀번호 변경 관련 명칭으로 변경 필요
-const MembershipView = () => {
+const MemberInfoView = () => {
   const router = useRouter();
   const [phone, setPhone] = useState('');
 
@@ -56,4 +55,4 @@ const MembershipView = () => {
   );
 };
 
-export default MembershipView;
+export default MemberInfoView;
