@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 
@@ -29,32 +30,34 @@ export function UserMenu() {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="min-w-[200px] px-4 ">
         <DropdownMenuGroup>
-          <DropdownMenuItem>
+          <DropdownMenuItem className="cursor-pointer">
             <BulletLabel>기본 정보 변경</BulletLabel>
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => setRole('admin')}>
+          <DropdownMenuItem onClick={() => setRole('admin')} className="cursor-pointer">
             <BulletLabel>관리자</BulletLabel>
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => setRole('agency')}>
+          <DropdownMenuItem onClick={() => setRole('agency')} className="cursor-pointer">
             <BulletLabel>대행사</BulletLabel>
           </DropdownMenuItem>
-          <DropdownMenuItem>
-            <BulletLabel>비밀번호 변경</BulletLabel>
+          <DropdownMenuItem className="cursor-pointer">
+            <Link href="/membership">
+              <BulletLabel>비밀번호 변경</BulletLabel>
+            </Link>
           </DropdownMenuItem>
-          <DropdownMenuItem>
+          <DropdownMenuItem className="cursor-pointer">
             <BulletLabel>로그아웃</BulletLabel>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
 
-          <DropdownMenuItem>
+          <DropdownMenuItem className="cursor-pointer">
             <BulletLabel>네이버 서비스 설정</BulletLabel>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
 
-          <DropdownMenuItem>
+          <DropdownMenuItem className="cursor-pointer">
             <BulletLabel>공지사항</BulletLabel>
           </DropdownMenuItem>
-          <DropdownMenuItem>
+          <DropdownMenuItem className="cursor-pointer">
             <BulletLabel>고객센터</BulletLabel>
           </DropdownMenuItem>
         </DropdownMenuGroup>
