@@ -104,7 +104,7 @@ components
 │   └── nav-projects.tsx
 ```
 
-// 이슈
+// 이슈 머지???
 
 - React, Nextjs 버전 다운그레이드 필요 : Reactj 18v, Nextjs 14v
 - 달력 관련 이슈. 현재 React 버전으로인하여 캘린더 디자인이 안맞아서 깨짐. nextjs랑 React 버전 한단계 낮추고, 나머지 라이브러리도 전부확인 필요
