@@ -1,9 +1,32 @@
-@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
-
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
+
+@font-face {
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 100;
+  src:
+    url('/fonts/Pretendard-Thin.woff2') format('woff2'),
+    url('/fonts/Pretendard-Thin.woff') format('woff');
+}
+@font-face {
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 400;
+  src:
+    url('/fonts/Pretendard-Regular.woff2') format('woff2'),
+    url('/fonts/Pretendard-Regular.woff') format('woff');
+}
+@font-face {
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 700;
+  src:
+    url('/fonts/Pretendard-Bold.woff2') format('woff2'),
+    url('/fonts/Pretendard-Bold.woff') format('woff');
+}
 
 @theme inline {
   --color-background: var(--background);
